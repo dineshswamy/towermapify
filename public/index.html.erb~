@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<title>Google Maps JavaScript API v3</title>
+<style type="text/css">
+#map_canvas
+{
+width:600px;
+height:600px;
+}
+#map_overlay
+{
+width:600px;
+height:200px;
+background-color:black;
+color:white;
+}
+#map_overlay
+ul{
+list-style:none;
+}
+
+#form_id
+label {
+padding:20px;
+}
+#map_overlay_list
+{
+width:200px;
+height:150px;
+overflow:scroll;
+overflow-x:hidden;
+}
+</style>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDNSsZWbC9eVumGlWU4RDR-wL96vjC3hgM&sensor=false">
+</script>
+<script type="text/javascript" src="geoxml3.js"></script>
+<script type="text/javascript">
+
+function initialize() {
+  var chicago = new google.maps.LatLng(14.477234210156507, 79.8486328125);
+  var myOptions = {
+    zoom: 4,
+    center: chicago,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  }
+  var themap = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+  var geoxmlobj=new geoXML3.parser({map:themap });
+	geoxmlobj.parse('http://localhost:3000/gen_kml/generatekml.xml');
+}
+</script>
+</head>
+<body onload="initialize()">
+<div id="map_canvas">
+</div>
+<div id="map_overlay">
+<ul id="map_overlay_list">
+<li id="operator">
+<ul id="operator_list">
+<li><img src="assets/airtel.png"/>Airtel</li>
+<li><img src="assets/aircel.png"/>Aircel</li>
+<li><img src="assets/bsnl.png"/>Bsnl</li>
+<li><img src="assets/docomo.png"/>Docomo</li>
+<li><img src="assets/idea.png"/>Idea</li>
+<li><img src="assets/loop.png"/>Loop</li>
+<li><img src="assets/mtnl.png"/>Mtnl</li>
+<li><img src="assets/mts.png"/>MTS</li>
+<li><img src="assets/reliance.png"/>Reliance</li>
+<li><img src="assets/videocon.png"/>Videocon</li>
+<li><img src="assets/virgin.png"/>Virgin</li>
+<li><img src="assets/vodafone.png"/>Vodafone</li>
+</ul>
+</li>
+<li id="place"></li>
+<li id="threegorfourg"></li>
+</ul>
+</div>
+
+</body>
+</html>
+
+

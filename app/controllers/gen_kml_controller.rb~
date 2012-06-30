@@ -1,0 +1,51 @@
+class GenKmlController < ApplicationController
+  layout 'kmltemplate'
+  
+  def generatekml
+	
+	@query= CoverageArea.select("*")
+	if(!params[:reg_id].nil?) then
+		l= begin Integer(params[:reg_id]) rescue 0 end		
+		@query=@query.where(:region_id=>l)
+	end
+	if(!params[:city_id].nil?) then
+		l= begin Integer(params[:city_id]) rescue 0 end		
+		@query=@query.where(:region_id=>l)
+	end	
+	if((!params[:has_3g].nil?) && (!params[:has_4g].nil?)) then
+		if((params[:has_3g]=="1")&&(params[:has_4g]=="1")) then
+			  @query=@query.where("has_3g=1 OR has_4g=1")
+		end
+	elsif((!params[:has_4g].nil?) && (params[:has_4g]=="1")) then
+			  @query=@query.where("has_4g=1")	  
+	elsif((!params[:has_3g].nil?) && (params[:has_3g]=="1")) then
+	 		  @query=@query.where("has_3g=1")	  
+	end
+	
+	if(!params[:op_id].nil?&&params[:op_id].kind_of?(Array)) then
+		ops = Array.new
+		params[:op_id].each{|op|
+		opid = begin Integer(op) rescue 0 end
+		ops.push opid if(opid!=0)
+		}	
+		@query=@query.where(:provider_id=>ops) if(ops.size>0)
+	end
+	  
+	if(!params[:lat].nil? && params[:lat].kind_of?(Array)) then
+		if(!params[:lng].nil? && params[:lng].kind_of?(Array)) then 
+	        	bounds=Array.new
+			params[:lat].each{|g|
+			lt=begin Float(g) end
+			bounds.push lt}
+			params[:lng].each{|g|
+			lg=begin Float(g) end
+			bounds.push lg 
+			}
+		        @query=@query.where("(lat>#{bounds[0]} and lon >#{bounds[2]}) and (lat<#{bounds[1]} and lon<#{bounds[3]})")		
+		
+	end
+
+  	end
+  end
+
+end

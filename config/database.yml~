@@ -1,0 +1,10 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: towermapify
+  pool: 5
+  username: root
+  password: shan123
+  socket: /var/run/mysqld/mysqld.sock
+

@@ -1,0 +1,4 @@
+class ShowcityController < ApplicationController
+  def list
+  end
+end

@@ -1,0 +1,4 @@
+<%
+@cities.each do |l| %>
+<h1><%= l.title %></h1>
+

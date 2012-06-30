@@ -1,0 +1,120 @@
+ <Style id="airtelicon">
+ <IconStyle>
+          <scale>1.2</scale>
+          <Icon>
+            <href>http://localhost/pushpins/airtel.png</href>
+          </Icon>
+</IconStyle>
+</Style>
+ <Style id="aircelicon">
+ <IconStyle>
+          <scale>1.2</scale>
+          <Icon>
+            <href>http://localhost/pushpins/aircel.png</href>
+          </Icon>
+</IconStyle>
+</Style>
+ <Style id="bsnlicon">
+ <IconStyle>
+          <scale>1.2</scale>
+          <Icon>
+            <href>http://localhost/pushpins/bsnl.png</href>
+          </Icon>
+</IconStyle>
+</Style>
+ <Style id="docomoicon">
+ <IconStyle>
+          <scale>1.2</scale>
+          <Icon>
+            <href>http://localhost/pushpins/docomo.png</href>
+          </Icon>
+</IconStyle>
+</Style>
+ <Style id="ideaicon">
+ <IconStyle>
+          <scale>1.2</scale>
+          <Icon>
+            <href>http://localhost/pushpins/idea.png</href>
+          </Icon>
+</IconStyle>
+</Style>
+ <Style id="loopicon">
+ <IconStyle>
+          <scale>1.2</scale>
+          <Icon>
+            <href>http://localhost/pushpins/loop.png</href>
+          </Icon>
+</IconStyle>
+</Style>
+ <Style id="mtnlicon">
+ <IconStyle>
+          <scale>1.2</scale>
+          <Icon>
+            <href>http://localhost/pushpins/mtnl.png</href>
+          </Icon>
+</IconStyle>
+</Style>
+ <Style id="relianceicon">
+ <IconStyle>
+          <scale>1.2</scale>
+          <Icon>
+            <href>http://localhost/pushpins/reliance.png</href>
+          </Icon>
+</IconStyle>
+</Style>
+ <Style id="mtsicon">
+ <IconStyle>
+          <scale>1.2</scale>
+          <Icon>
+            <href>http://localhost/pushpins/mts.png</href>
+          </Icon>
+</IconStyle>
+</Style>
+ <Style id="videoconicon">
+ <IconStyle>
+          <scale>1.2</scale>
+          <Icon>
+            <href>http://localhost/pushpins/videocon.png</href>
+          </Icon>
+</IconStyle>
+</Style>
+ <Style id="virginicon">
+ <IconStyle>
+          <scale>1.2</scale>
+          <Icon>
+            <href>http://localhost/pushpins/virgin.png</href>
+          </Icon>
+</IconStyle>
+</Style>
+ <Style id="vodafoneicon">
+ <IconStyle>
+          <scale>1.2</scale>
+          <Icon>
+            <href>http://localhost/pushpins/vodafone.png</href>
+          </Icon>
+</IconStyle>
+</Style>
+<% @query.each do |l| %>
+ <Placemark>
+      <name><%= l.city %></name>
+      <description>
+
+<![CDATA[
+<% if l.has_3g then %>
+<%= image_tag("3g.jpg") %>
+<%end%>
+<% if l.has_4g then %>
+<%= image_tag("4g.png") %>
+<%end%>
+]]>
+</description>
+  <styleUrl>#<%= getstyle(l.provider_id) %>icon</styleUrl>
+      <Point>
+        <coordinates><%= l.lon %>,<%= l.lat %></coordinates>
+      </Point>
+    </Placemark>
+<% end %>
+
+
+
+

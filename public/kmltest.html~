@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <title>Komparify Map</title>
+	<style type="text/css">
+#map_canvas
+{
+width:600px;
+height:600px;
+}
+#map_overlay
+{
+width:600px;
+height:50px;
+background-color:black;
+color:white;
+}
+#form_id
+label {
+padding:20px;
+}
+</style>
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?		key=AIzaSyDNSsZWbC9eVumGlWU4RDR-wL96vjC3hgM&sensor=false">
+	</script>
+        <script type="text/javascript" src="http://geoxml3.googlecode.com/svn/trunk/geoxml3.js">
+        </script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js">
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                  var myOptions = {                    
+                     zoom: 4,
+                    // center: myLatlng,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);     var geoXml = new geoXML3.parser({
+                    map: map,
+                    singleInfoWindow: true
+                });
+                geoXml.parse('http://localhost:3000/gen_kml/generatekml.xml');
+            });
+
+
+        </script>
+    </head>
+    <body>
+        <div id="map_canvas">
+        </div>
+    <div id="map_overlay">
+<ul id="map_overlay_list">
+<li id="operator">
+<ul id="operator_list">
+<li>
+<%= puts "Dineshswamy" %>
+</li>
+</ul>
+</li>
+<li id="place"></li>
+<li id="threegorfourg"></li>
+</ul>
+</div>
+    </body>
+</html>
