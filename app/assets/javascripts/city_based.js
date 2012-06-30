@@ -2,6 +2,7 @@ var qstring="",url="",pr_id="",themap=null,geocoder=null,autocomplete=null,bound
 var obj3g,obj4g,objoperator;
 var geoxmlobj=null;
 function initialize() {
+
   var chicago = new google.maps.LatLng(14.477234210156507, 79.8486328125);
   var myOptions = {
     zoom:4,
@@ -9,6 +10,11 @@ function initialize() {
     mapTypeId: google.maps.MapTypeId.ROADMAP
   }
 themap = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+if(boundsfixed)
+{
+var bounds=new google.maps.LatLngBounds(new google.maps.LatLng(a[0],a[1]),new google.maps.LatLng(a[2],a[3]));
+map.fitbounds(bounds);
+}
 g=document.getElementById("location");
 autoc_options = {
 types: ['geocode'],

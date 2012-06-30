@@ -1,3 +1,13 @@
+<script type="text/javascript">
+
+var a=new Array();
+a.push(<%= l.maxlat %>);
+a.push(<%= l.maxlon %>);
+a.push(<%= l.minlat %>);
+a.push(<%= l.minlon %>);
+var boundsfixed=true;
+<% end %>
+</script>
 <center>
 <div id="map_canvas">
 </div>

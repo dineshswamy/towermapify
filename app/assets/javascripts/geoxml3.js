@@ -35,7 +35,7 @@ geoXML3.parser = function (options) {
   var parserOptions = geoXML3.combineOptions(options, {
     singleInfoWindow: true,
     processStyles: true,
-    zoom: false
+    zoom: true
   });
   var docs = []; // Individual KML documents
   var lastMarker;
