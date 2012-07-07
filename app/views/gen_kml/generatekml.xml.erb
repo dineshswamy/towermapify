@@ -1,3 +1,5 @@
+<description>
+</description>
  <Style id="airtelicon">
  <IconStyle>
           <scale>1.2</scale>
@@ -97,7 +99,8 @@
 <% @query.each do |l| %>
  <Placemark>
       <name><%= l.city %></name>
-      <description>
+      
+<description>
 
 <![CDATA[
 <% if l.has_3g then %>
@@ -106,6 +109,7 @@
 <% if l.has_4g then %>
 <%= image_tag("4g.png") %>
 <%end%>
+<%= l.lon %>,<%= l.lat %>
 ]]>
 </description>
   <styleUrl>#<%= getstyle(l.provider_id) %>icon</styleUrl>

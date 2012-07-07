@@ -1,68 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-<title>Google Maps JavaScript API v3</title>
-<style type="text/css">
-#map_canvas
-{
-width:600px;
-height:600px;
-margin:10px;
-}
-#map_overlay
-{
-width:600px;
-height:200px;
-background-color:black;
-color:white;
-}
-ul#map_operator_list
-ul{
-list-style:none;
-background:#f0c798;
-}
-
-#form_id
-{
-
-}
-#map_overlay_list
-{
-
-}
-#map_overlay_list>li{
-float:left;
-}
-#operator
-{
-padding:5px;
-}
-#threegorfourg
-{
-}
-</style>
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDNSsZWbC9eVumGlWU4RDR-wL96vjC3hgM&sensor=false&libraries=places">
-</script>
-<script type="text/javascript" src="assets/geoxml3.js"></script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-
-<script type="text/javascript">
+$(function(){$("input:checkbox,input:text,input:button").uniform()});
 var qstring="",url="",pr_id="",themap=null,geocoder=null,autocomplete=null,bounds="";
 var obj3g,obj4g,objoperator;
-var geoxmlobj=null,zl=0,worthQuerying=null,moreResultsAvailable=false;
+var geoxmlobj=null,startOverQuery=true;
 var defOptions=null,prevlat=null,prevlon=null,prevBounds=null,india_bounds=null;
-var map_reset=true;
 var sw=new Array();
 var ne=new Array();
+var map_reset=true;
+var moreResultsAvailable=true,outsideindia=true;
 function initialize() {
+
   var india = new google.maps.LatLng(14.477234210156507, 79.8486328125);
    defOptions = {
     zoom:5,
     center: india,
     mapTypeId: google.maps.MapTypeId.ROADMAP
-  }
+  };
+
 themap = new google.maps.Map(document.getElementById("map_canvas"), defOptions);
 g=document.getElementById("location");
 autoc_options = {
@@ -70,22 +23,24 @@ types: ['(regions)'],
 componentRestrictions: {country: 'in'}
 };
 autocomplete = new google.maps.places.Autocomplete(g,autoc_options);
-google.maps.event.addListener(autocomplete,'place_changed',GeocodeLocation);
+//google.maps.event.addListener(autocomplete,'place_changed',GeocodeLocation);
 $('#operator :input').bind("click",DoQuery);
 india_bounds=new google.maps.LatLngBounds(new google.maps.LatLng(6.7471390,68.1623860),new google.maps.LatLng(35.50715650,97.3955550));
-
+prevBounds=india_bounds;
 var operatorlist=document.getElementById("map_operator_list");
 
-themap.controls[google.maps.ControlPosition.RIGHT_CENTER].push(operatorlist);
+themap.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(operatorlist);
 var autocompletediv=document.getElementById("map_overlay_autocomplete");
 themap.controls[google.maps.ControlPosition.TOP_LEFT].push(autocompletediv);
-google.maps.event.addListener(themap,'bounds_changed',InspectBounds);
+
 url="http://localhost:3000/gen_kml/generatekml.xml?";
 InspectCheckBox();
 google.maps.event.addDomListener(obj3g,'click',DoQuery);
 google.maps.event.addDomListener(obj4g,'click',DoQuery);
 geoxmlobj=new geoXML3.parser({map:themap});
 geoxmlobj.parse(url);
+google.maps.event.addListener(themap,'idle',InspectBounds);
+
 }
 function Check3GAnd4G(){
 InspectCheckBox();
@@ -171,18 +126,29 @@ function GeocodeLocation()
 {
 //get place
 var locval=document.getElementById("location");
-l=null,e=null;
+var l=null,e=null;
 var g=autocomplete.getPlace();
 if(locval.value!="")
 {
+sw.length=0;
+ne.length=0;
+if(g.id!=null)
 themap.fitBounds(g.geometry.viewport);
-//get bounds
-l=g.geometry.viewport.getSouthWest();
-e=g.geometry.viewport.getNorthEast();
-prePareBoundsQstring(l,e);
-}
-}
 
+//get bounds
+//l=g.geometry.viewport.getSouthWest();
+//e=g.geometry.viewport.getNorthEast();
+//sw.push(l.lat());
+//sw.push(l.lng());
+//ne.push(e.lat());
+//ne.push(e.lng());
+//UpdatePreviousBoundsandDoQuery();
+}
+}
+function PushMapBounds()
+{
+
+}
 function InspectBounds()
 {
 sw.length=0;
@@ -266,107 +232,7 @@ navigator.geolocation.getCurrentPosition(onsuccess,onfailure);
 }
 }
 
-</script>
-</head>
-<body onload="initialize()">
-
-<div id="pb">
-</div>
-<div id="cb">
-</div>
-<div id="map_canvas">
-</div>
-
-<form action="#" id="form_id">
-<ul id="map_operator_list">
-<ul>
-<li id="hasthreeorfourg">
-<label>
-<input type="checkbox" id="has_3g" value="1" checked="checked"/>3G
-</label>
-<label>
-<input type="checkbox" id="has_4g" value="1" checked="checked"/>4G
-</label>
-</li>
-</ul>
-<ul id="operator">
-<li id="operator_checkboxes">
-<input type="checkbox" name="operator" value="1"/>
-<img src="assets/airtel.png"/>Airtel
-</li>
-
-<li>
-<input type="checkbox" name="operator" value="5"/>
-<img src="assets/aircel.png"/>Aircel
-</li>
-
-<li>
-<input type="checkbox" name="operator" value="6"/>
-<img src="assets/bsnl.png"/>Bsnl
-</li>
-
-<li>
-<input type="checkbox" name="operator" value="13"/>
-<img src="assets/docomo.png"/>Docomo
-</li>
-
-<li>
-<input type="checkbox" name="operator" value="7"/>
-<img src="assets/idea.png"/>Idea
-</li>
-
-<li>
-<input type="checkbox" name="operator" value="" disabled="disabled"/>
-<img src="assets/loop.png"/>Loop
-</li>
-
-<li>
-<input type="checkbox" name="operator" value="" disabled="disabled"/>
-<img src="assets/mtnl.png"/>Mtnl
-</li>
-
-<li>
-<input type="checkbox" name="operator" value="10"/>
-<img src="assets/mts.png"/>MTS
-</li>
-
-<li>
-<input type="checkbox" name="operator" value="3"/>
-<img src="assets/reliance.png"/>Reliance GSM
-</li>
-
-<li>
-<input type="checkbox" name="operator" value="17"/>
-<img src="assets/reliance.png"/>Reliance CDMA
-</li>
-
-<li>
-<input type="checkbox" name="operator" value="1" disabled="disabled"/>
-<img src="assets/videocon.png"/>Videocon
-</li>
-
-<li>
-<input type="checkbox" name="operator" value="1" disabled="disabled"/>
-<img src="assets/virgin.png"/>Virgin
-</li>
-
-<li>
-<input type="checkbox" name="operator" value="4" />
-<img src="assets/vodafone.png"/>Vodafone
-</li>
-</ul>
-</ul>
-
-<div id="map_overlay_autocomplete">
-<label>
-<input type="text"  id="location" placeholder="Search coverage in.." size="50"/>
-</label>
-</div>
-
-</form>
 
 
-</body>
-</html>
 
 

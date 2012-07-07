@@ -1,0 +1,76 @@
+
+function InspectBounds()
+{
+sw.length=0;
+ne.length=0;
+var mapbounds=themap.getBounds();
+l=mapbounds.getSouthWest();
+e=mapbounds.getNorthEast();
+sw.push(l.lat());
+sw.push(l.lng());
+ne.push(e.lat());
+ne.push(e.lng());
+if((OutsideOverBound(l,e)||moreResultsAvailable)&&(WithinIndia(l,e) || IntersectsIndia(mapbounds)))
+{
+UpdateprevBounds();
+prePareBoundsQstring(sw[0],sw[1],ne[0],ne[1]);
+DoQuery();
+outsideindia=true;
+}
+else if(!(WithinIndia(l,e) || IntersectsIndia(mapbounds)))
+{
+if(outsideindia)
+ResetMap();
+outsideindia=false;
+}
+var o=document.getElementById("pb");
+var e=document.getElementById("cb");
+o.innerHTML="previous bounds"+prevBounds.toString();
+e.innerHTML="CurrentBounds"+themap.getBounds().toString();
+}
+function ResetMap()
+{
+bounds="";
+DoQuery();
+}
+function prePareBoundsQstring(swlat,swlng,nelat,nelng)
+{
+bounds="";
+if(qstring=="" && pr_id=="")
+boundslat="lat[]="+swlat+"&lat[]="+nelat;
+else
+boundslat="&lat[]="+swlat+"&lat[]="+nelat;
+boundslng="&lng[]="+swlng+"&lng[]="+nelng;
+bounds=boundslat+boundslng;
+}
+function WithinIndia(l,e)
+{
+if(india_bounds.contains(l) && india_bounds.contains(e))
+return true;
+}
+function OutsideOverBound(l,e)
+{
+if(prevBounds.contains(l) || prevBounds.contains(e))
+return true;
+}
+function UpdateprevBounds()
+{
+//update prevbounds
+sw[0]-=3;
+sw[1]-=3;
+ne[0]+=3;
+ne[1]+=3;
+prevBounds=new google.maps.LatLngBounds(new google.maps.LatLng(sw[0],sw[1]),new google.maps.LatLng(ne[0],ne[1]));
+}
+function IntersectsIndia(mapbounds)
+{
+return india_bounds.intersects(mapbounds);
+}
+function getLocation()
+{
+if(navigator.geolocation)
+{
+navigator.geolocation.getCurrentPosition(onsuccess,onfailure);
+}
+}
+

@@ -1,0 +1,96 @@
+
+<div id="pb">
+</div>
+
+<div id="cb">
+</div>
+
+<div id="map_canvas">
+</div>
+<form action="#" id="form_id">
+<ul id="map_operator_list">
+<ul>
+<li id="hasthreeorfourg">
+<label>
+<input type="checkbox" id="has_3g" value="1" checked="checked"/>3G
+</label>
+<label>
+<input type="checkbox" id="has_4g" value="1" checked="checked"/>4G
+</label>
+</li>
+</ul>
+<ul id="operator">
+<li id="operator_checkboxes">
+<input type="checkbox" name="operator" value="1" checked="checked"/>
+<%= image_tag("airtel.png")%>Airtel
+</li>
+
+<li>
+<input type="checkbox" name="operator" value="5" checked="checked" />
+<%= image_tag("aircel.png") %>Aircel
+</li>
+
+<li>
+<input type="checkbox" name="operator" value="6" checked="checked"/>
+<%= image_tag("bsnl.png") %>Bsnl
+</li>
+
+<li>
+<input type="checkbox" name="operator" value="13" checked="checked"/>
+<%= image_tag("docomo.png") %>Docomo
+</li>
+
+<li>
+<input type="checkbox" name="operator" value="7" checked="checked"/>
+<%= image_tag("idea.png") %>Idea
+</li>
+
+<li>
+<input type="checkbox" name="operator" value="" disabled="disabled"/>
+<%= image_tag("loop.png") %>Loop
+</li>
+
+<li>
+<input type="checkbox" name="operator" value="" disabled="disabled"/>
+<%= image_tag("mtnl.png") %>Mtnl
+</li>
+
+<li>
+<input type="checkbox" name="operator" value="10" checked="checked"/>
+<%= image_tag("mts.png") %>MTS
+</li>
+
+<li>
+<input type="checkbox" name="operator" value="3" checked="checked"/>
+<%= image_tag("reliance.png") %> Reliance GSM
+</li>
+
+<li>
+<input type="checkbox" name="operator" value="17" checked="checked"/>
+<%= image_tag("reliance.png") %>Reliance CDMA
+</li>
+
+<li>
+<input type="checkbox" name="operator" value="1" disabled="disabled"/>
+<%= image_tag("videocon.png") %>Videocon
+</li>
+
+<li>
+<input type="checkbox" name="operator" value="1" disabled="disabled"/>
+<%= image_tag("virgin.png") %>Virgin
+</li>
+
+<li>
+<input type="checkbox" name="operator" value="4" checked="checked"/>
+<%= image_tag("vodafone.png") %>Vodafone
+</li>
+</ul>
+</ul>
+
+<div id="map_overlay_autocomplete">
+<label>
+<input type="text"  id="location" placeholder="Search coverage in.." size="35"/>
+<input type="button" onclick="GeocodeLocation();" value="search"/>
+</label>
+</div>
+</form>

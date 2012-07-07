@@ -2,7 +2,7 @@ class GenKmlController < ApplicationController
   layout 'kmltemplate'
   
   def generatekml
-	
+	@moremarkers="false"
 	@query= CoverageArea.select("*")
 	if(!params[:reg_id].nil?) then
 		l= begin Integer(params[:reg_id]) rescue 0 end		
@@ -10,7 +10,7 @@ class GenKmlController < ApplicationController
 	end
 	if(!params[:city_id].nil?) then
 		l= begin Integer(params[:city_id]) rescue 0 end		
-		@query=@query.where(:region_id=>l)
+		@query=@query.where(:city_id=>l)
 	end	
 	if((!params[:has_3g].nil?) && (!params[:has_4g].nil?)) then
 		if((params[:has_3g]=="1")&&(params[:has_4g]=="1")) then
@@ -46,6 +46,8 @@ class GenKmlController < ApplicationController
 	end
 
   	end
+	#@query=@query.order("weight DESC")	
+	@query=@query.limit(500)
   end
 
 end

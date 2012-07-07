@@ -3,12 +3,11 @@
 <head>
   <title>TowerMapify</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <%= javascript_include_tag "geoxml3" %>
+  <%= javascript_include_tag "region_based" %>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDNSsZWbC9eVumGlWU4RDR-wL96vjC3hgM&sensor=false&libraries=places">
 </script>
-  <%= javascript_include_tag "geoxml3" %>
-<script type="text/javascript" src="assets/geoxml3.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
 </head>

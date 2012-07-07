@@ -2,7 +2,7 @@ class GenKmlController < ApplicationController
   layout 'kmltemplate'
   
   def generatekml
-	
+	@moremarkers="false"
 	@query= CoverageArea.select("*")
 	if(!params[:reg_id].nil?) then
 		l= begin Integer(params[:reg_id]) rescue 0 end		
@@ -46,6 +46,8 @@ class GenKmlController < ApplicationController
 	end
 
   	end
+	@query=@query.order("weight DESC")	
+	@query=@query.limit(500)
   end
 
 end

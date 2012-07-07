@@ -1,15 +1,18 @@
 <center>
 <div id="map_canvas">
 </div>
+<script type="text/javascript">
+var alat=new Array();
+var blon=new Array();
+alat.push(<%= @maxlat %>);
+alat.push(<%= @minlat %>);
+blon.push(<%= @maxlong %>);
+blon.push(<%= @minlong %>);
+var boundsfixed=true;
+var rid=<%= @regionid %>
+</script>
+
 <form action="#" name="selectregion">
-Select Region:
-<select name="regionid" onclick="selectRegion();">
-  <% @query.each do |l| %>
-  <option value="<%= l.region_id%>"><%= l.region_id%></option>
-  <% end %>
-</select>
-
-
 <div id="map_overlay">
 <ul id="map_overlay_list">
 <li id="operator">

@@ -6,8 +6,9 @@ TowerMapify::Application.routes.draw do
 
   match "gen_kml/generatekml" =>"gen_kml#generatekml"
 
-  get "region_based/byregions"
   get "city_based/bycity"
+  get "region_based/byregions"
+  get "towermapify/mapthetowers"
   get "show_entry/theentry"
 
   get "showcity/list"

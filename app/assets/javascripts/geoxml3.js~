@@ -37,10 +37,11 @@ geoXML3.parser = function (options) {
     processStyles: true,
     zoom: false
   });
+
   var docs = []; // Individual KML documents
   var lastMarker;
   var parserName;
-
+var rowcount;
   // Private methods
 
   var parse = function (urls, docSet) {
@@ -107,7 +108,6 @@ geoXML3.parser = function (options) {
     docs[0].markers=[];
 // ---
   };
-
   var showDocument = function (doc) {
     // Show the map objects associated with a document 
     var i;
@@ -139,6 +139,8 @@ geoXML3.parser = function (options) {
 
       // Parse styles
       var styleID, iconNodes;
+
+      
       var styleNodes = responseXML.getElementsByTagName('Style');
       for (i = 0; i < styleNodes.length; i++) {
         styleID   = styleNodes[i].getAttribute('id');
@@ -162,6 +164,10 @@ geoXML3.parser = function (options) {
       }
       var placemark, node, coords, path, marker;
       var placemarkNodes = responseXML.getElementsByTagName('Placemark');
+	if(placemarkNodes.length<=500)    	
+	  moreResultsAvailable=true;
+	else
+	  moreResultsAvailable=false;
       for (i = 0; i < placemarkNodes.length; i++) {
         // Init the placemark object
         node = placemarkNodes[i];
@@ -407,9 +413,9 @@ geoXML3.parser = function (options) {
         // Init the style object with a standard KML icon
         doc.styles[styleID].icon =  new google.maps.MarkerImage(
           doc.styles[styleID].href,
-          new google.maps.Size(32, 32),
+          new google.maps.Size(23, 27),
           new google.maps.Point(0, 0),
-          new google.maps.Point(16, 12)
+          new google.maps.Point(10,27)
         );
 
         // Look for a predictable shadow
@@ -506,13 +512,14 @@ geoXML3.parser = function (options) {
     // Expose some properties and methods
 
     options: parserOptions,
-    docs:    docs,
-    
+    docs:    docs,    
+    rowcount: rowcount,
     parse:         parse,
     hideDocument:  hideDocument,
     showDocument:  showDocument,
     processStyles: processStyles, 
     createMarker:  createMarker,
+    
     createOverlay: createOverlay
   };
 };

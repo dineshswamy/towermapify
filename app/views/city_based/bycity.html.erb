@@ -1,25 +1,23 @@
 <script type="text/javascript">
+var alat=new Array();
+var blon=new Array();
+alat.push(<%= @minlat %>);
+alat.push(<%= @maxlat %>);
+blon.push(<%= @minlong %>);
+blon.push(<%= @maxlong %>);
 
-var a=new Array();
-a.push(<%= l.maxlat %>);
-a.push(<%= l.maxlon %>);
-a.push(<%= l.minlat %>);
-a.push(<%= l.minlon %>);
 var boundsfixed=true;
-<% end %>
+var cid=<%= @cityid %>
 </script>
 <center>
+Maxlat:<%= @maxlat %>
+Maxlong:<%= @maxlong %>
+
+Minlat:<%= @minlat %>
+Minlong:<%= @minlong %>
 <div id="map_canvas">
 </div>
 <form action="#" name="selectcity">
-Select city:
-<select name="cityid" onclick="selectCity();">
-  <% @query.each do |l| %>
-  <option value="<%= l.city_id%>"><%= l.city_id%></option>
-  <% end %>
-</select>
-
-
 <div id="map_overlay">
 <ul id="map_overlay_list">
 <li id="operator">
