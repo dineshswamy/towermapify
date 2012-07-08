@@ -1,10 +1,8 @@
-<description>
-</description>
  <Style id="airtelicon">
  <IconStyle>
           <scale>1.2</scale>
           <Icon>
-            <href>http://localhost/pushpins/airtel.png</href>
+            <href><%= path_to_image("airtel.png") %></href>
           </Icon>
 </IconStyle>
 </Style>
@@ -12,7 +10,7 @@
  <IconStyle>
           <scale>1.2</scale>
           <Icon>
-            <href>http://localhost/pushpins/aircel.png</href>
+            <href><%= path_to_image("aircel.png") %></href>
           </Icon>
 </IconStyle>
 </Style>
@@ -20,7 +18,7 @@
  <IconStyle>
           <scale>1.2</scale>
           <Icon>
-            <href>http://localhost/pushpins/bsnl.png</href>
+            <href><%= path_to_image("bsnl.png") %></href>
           </Icon>
 </IconStyle>
 </Style>
@@ -28,7 +26,7 @@
  <IconStyle>
           <scale>1.2</scale>
           <Icon>
-            <href>http://localhost/pushpins/docomo.png</href>
+            <href><%= path_to_image("docomo.png") %></href>
           </Icon>
 </IconStyle>
 </Style>
@@ -36,7 +34,7 @@
  <IconStyle>
           <scale>1.2</scale>
           <Icon>
-            <href>http://localhost/pushpins/idea.png</href>
+            <href><%= path_to_image("idea.png") %></href>
           </Icon>
 </IconStyle>
 </Style>
@@ -44,7 +42,7 @@
  <IconStyle>
           <scale>1.2</scale>
           <Icon>
-            <href>http://localhost/pushpins/loop.png</href>
+            <href><%= path_to_image("loop.png") %></href>
           </Icon>
 </IconStyle>
 </Style>
@@ -52,7 +50,7 @@
  <IconStyle>
           <scale>1.2</scale>
           <Icon>
-            <href>http://localhost/pushpins/mtnl.png</href>
+            <href><%= path_to_image("mtnl.png") %></href>
           </Icon>
 </IconStyle>
 </Style>
@@ -60,7 +58,7 @@
  <IconStyle>
           <scale>1.2</scale>
           <Icon>
-            <href>http://localhost/pushpins/reliance.png</href>
+            <href><%= path_to_image("reliance.png") %></href>
           </Icon>
 </IconStyle>
 </Style>
@@ -68,7 +66,7 @@
  <IconStyle>
           <scale>1.2</scale>
           <Icon>
-            <href>http://localhost/pushpins/mts.png</href>
+            <href><%= path_to_image("mts.png") %></href>
           </Icon>
 </IconStyle>
 </Style>
@@ -76,7 +74,7 @@
  <IconStyle>
           <scale>1.2</scale>
           <Icon>
-            <href>http://localhost/pushpins/videocon.png</href>
+            <href><%= path_to_image("videocon.png") %></href>
           </Icon>
 </IconStyle>
 </Style>
@@ -84,7 +82,7 @@
  <IconStyle>
           <scale>1.2</scale>
           <Icon>
-            <href>http://localhost/pushpins/virgin.png</href>
+            <href><%= path_to_image("virgin.png") %></href>
           </Icon>
 </IconStyle>
 </Style>
@@ -92,7 +90,7 @@
  <IconStyle>
           <scale>1.2</scale>
           <Icon>
-            <href>http://localhost/pushpins/vodafone.png</href>
+            <href> <%= path_to_image("vodafone.png") %></href>
           </Icon>
 </IconStyle>
 </Style>
@@ -117,6 +115,9 @@
         <coordinates><%= l.lon %>,<%= l.lat %></coordinates>
       </Point>
     </Placemark>
+	<description>
+			
+	</description>
 <% end %>
 
 
