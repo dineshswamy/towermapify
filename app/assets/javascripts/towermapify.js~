@@ -7,6 +7,7 @@ var sw=new Array();
 var ne=new Array();
 var map_reset=true;
 var moreResultsAvailable=true,outsideindia=true;
+var rectangle=null;
 function initialize() {
 
   var india = new google.maps.LatLng(14.477234210156507, 79.8486328125);
@@ -28,7 +29,6 @@ $('#operator :input').bind("click",DoQuery);
 india_bounds=new google.maps.LatLngBounds(new google.maps.LatLng(6.7471390,68.1623860),new google.maps.LatLng(35.50715650,97.3955550));
 prevBounds=india_bounds;
 var operatorlist=document.getElementById("map_operator_list");
-
 themap.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(operatorlist);
 var autocompletediv=document.getElementById("map_overlay_autocomplete");
 themap.controls[google.maps.ControlPosition.TOP_LEFT].push(autocompletediv);
@@ -111,15 +111,28 @@ pr_id+="&op_id[]="+$(this).val();
 }
 function Drawrectangle()
 {
-rectangle= new google.maps.Circle();
+rectangle= new google.maps.Rectangle();
+google.maps.event.addListener(rectangle,"bounds_changed",QueryRectangle);
+var g=themap.getBounds();
+var l=g.getSouthWest();
+var e=g.getNorthEast();
+var rectbounds=new google.maps.LatLngBounds(new google.maps.LatLng(l.lat()-8,l.lng()-8),new google.maps.LatLng(e.lat()-8,e.lng()-8));
+
 // set bounds
-circleOptions={
-center:themap.getCenter(),
+rectangleOptions={
 map:themap,
-editable:true,
-radius:15
+editable:true,  
+bounds:rectbounds
 };
-rectangle.setOptions(circleOptions);
+rectangle.setOptions(rectangleOptions);
+}
+function QueryRectangle()
+{
+var g=rectangle.getBounds();
+var l=g.getSouthWest();
+var e=g.getNorthEast();
+prePareBoundsQstring(l.lat(),l.lng(),e.lat(),e.lng())
+DoQuery();
 }
 
 function GeocodeLocation()

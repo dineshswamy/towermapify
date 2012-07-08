@@ -46,7 +46,7 @@ class GenKmlController < ApplicationController
 	end
 
   	end
-	#@query=@query.order("weight DESC")	
+	@query=@query.order("weight DESC")	
 	@query=@query.limit(500)
   end
 

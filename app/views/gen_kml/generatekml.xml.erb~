@@ -104,10 +104,10 @@
 
 <![CDATA[
 <% if l.has_3g then %>
-<%= image_tag("3g.jpg") %>
+<%= image_tag("3g.png" , :size=> "50x50") %>
 <%end%>
 <% if l.has_4g then %>
-<%= image_tag("4g.png") %>
+<%= image_tag("4g.png" , :size=> "50x50")  %>
 <%end%>
 <%= l.lon %>,<%= l.lat %>
 ]]>
