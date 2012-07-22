@@ -3,6 +3,7 @@ class GenKmlController < ApplicationController
   
   def generatekml
 	@moremarkers="false"
+	@av_op="\t"
 	@query= CoverageArea.select("*")
 	if(!params[:reg_id].nil?) then
 		l= begin Integer(params[:reg_id]) rescue 0 end		

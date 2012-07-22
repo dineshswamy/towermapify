@@ -1,3 +1,6 @@
+<% showoperators=Hash.new
+ i=0
+ %>
  <Style id="airtelicon">
  <IconStyle>
           <scale>1.2</scale>
@@ -96,18 +99,24 @@
 </Style>
 <% @query.each do |l| %>
  <Placemark>
-      <name><%= l.city %></name>
+      <name></name>
+     
       
 <description>
 
 <![CDATA[
+<%= image_tag( getOperatorLogo(l.provider_id) , :size=> "30x30") %>
+<p style="display:inline; font:10px 'Times New Roman',Serif;">
+
+<%=l.city %>
+</p>
 <% if l.has_3g then %>
-<%= image_tag("3g.png" , :size=> "50x50") %>
+<%= image_tag("3g.png" , :size=> "20x20") %>
 <%end%>
 <% if l.has_4g then %>
-<%= image_tag("4g.png" , :size=> "50x50")  %>
+<%= image_tag("4g.png" , :size=> "20x20")  %>
 <%end%>
-<%= l.lon %>,<%= l.lat %>
+
 ]]>
 </description>
   <styleUrl>#<%= getstyle(l.provider_id) %>icon</styleUrl>
@@ -115,11 +124,24 @@
         <coordinates><%= l.lon %>,<%= l.lat %></coordinates>
       </Point>
     </Placemark>
-	<description>
-			
-	</description>
+<% if(showoperators[l.provider_id]==nil)
+   	showoperators[l.provider_id]=getstyle(l.provider_id)
+   end %>
+   
 <% end %>
-
-
-
+ <ExtendedData>
+      	<Data name="operators_name">
+      		<value>
+      <%
+      
+      	showoperators.each do |o|
+	%>	      	
+      	<% 
+      	 @av_op=@av_op+o[0].to_s+" "
+      	 %>
+      	<% end %>
+      	<%= @av_op %>
+      		</value>
+      	</Data>
+      </ExtendedData>
 

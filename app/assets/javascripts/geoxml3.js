@@ -102,6 +102,7 @@ var rowcount;
 // New version delete all markers ---------------------------------------------------------------------------------------------------------------------
 // http://www.goldenline.pl/forum/1852722/maps-api-v3-i-skrypt-geoxml3-pokaz-ukryj-markery/s/1#35033142
     for(var i in docs[0].markers){
+       docs[0].markers[i].infoWindow.close();
        docs[0].markers[i].setMap(null);
     }
 
@@ -139,8 +140,10 @@ var rowcount;
 
       // Parse styles
       var styleID, iconNodes;
-
+      //Getting available operators for the bounds 
+      var Operators_Node=responseXML.getElementsByTagName('value');
       
+      Operators_Node_List=Operators_Node[0].childNodes[0].nodeValue;
       var styleNodes = responseXML.getElementsByTagName('Style');
       for (i = 0; i < styleNodes.length; i++) {
         styleID   = styleNodes[i].getAttribute('id');
@@ -454,8 +457,7 @@ var rowcount;
       position: new google.maps.LatLng(placemark.point.lat, placemark.point.lng),
       title:    placemark.name,
       zIndex:   Math.round(-placemark.point.lat * 100000),
-      icon:     placemark.style.icon,
-      shadow:   placemark.style.shadow 
+      icon:     placemark.style.icon 
     });
   
     // Create the marker on the map
@@ -465,12 +467,22 @@ var rowcount;
     }
 
     // Set up and create the infowindow
-    var infoWindowOptions = geoXML3.combineOptions(parserOptions.infoWindowOptions, {
-      content: '<div class="geoxml3_infowindow"><h3>' + placemark.name + 
-               '</h3><div>' + placemark.description + '</div></div>',
-      pixelOffset: new google.maps.Size(0, 2)
-    });
-    marker.infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+    
+
+var infoboxoptions={
+      content: '<div class="geoxml3_infowindow">'+placemark.name+'<div>'+ placemark.description + '</div></div>',
+      pixelOffset: new google.maps.Size(-65,-25),
+      maxWidth:0,
+      disableAutoPan:true,
+      closeBoxMargin:"5px 5px 2px 2px",
+      closeBoxURL:"http://www.google.com/intl/en_us/mapfiles/close.gif",
+      isHidden:false,
+      pane:"floatPane",
+      boxClass:"infowindow_style",
+      enableEventPropagation:false,
+      alignBottom:true
+    };
+    marker.infoWindow = new InfoBox(infoboxoptions);
 
     // Infowindow-opening event handler
     google.maps.event.addListener(marker, 'click', function() {

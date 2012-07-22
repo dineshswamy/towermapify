@@ -14,6 +14,9 @@ ul#map_operator_list
 ul{
 color:#f6f6f6;
 list-style:none;
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+border-radius: 6px;
 background-color:rgba(59,59,59,0.8);
 }
 
@@ -32,7 +35,15 @@ float:left;
 {
 padding:5px;
 }
-#threegorfourg
+.infowindow_style
 {
-
+width:130px;
+height:50px;
+background-color:#fff;
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+border-radius: 6px;
+border:1px solid #dc883c;
+-webkit-box-shadow: 0px 0px 7px 5px #dadce1;
+box-shadow: 0px 0px 7px 5px #dadce1;
 }

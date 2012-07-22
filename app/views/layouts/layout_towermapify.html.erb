@@ -3,16 +3,19 @@
 <head>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-<title>Google Maps JavaScript API v3</title>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<title>Komparify Coverage</title>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDNSsZWbC9eVumGlWU4RDR-wL96vjC3hgM&sensor=false&libraries=places">
+</script>
+  <%= javascript_include_tag "geoxml3" %>
+  <%= javascript_include_tag "infobox" %>
 <%= stylesheet_link_tag "towermapify" %>
 <%= stylesheet_link_tag "uniform" %>
   <%= csrf_meta_tags %>
-  <%= javascript_include_tag "geoxml3" %>
+    <%= javascript_include_tag "jquery.min-1.7.2" %>  
+
   <%= javascript_include_tag "towermapify" %>
     <%= javascript_include_tag "jquery.uniform" %>
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDNSsZWbC9eVumGlWU4RDR-wL96vjC3hgM&sensor=false&libraries=places">
-</script>
+
 
 </head>
 <body onload="initialize();">

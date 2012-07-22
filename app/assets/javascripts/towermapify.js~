@@ -1,31 +1,31 @@
-$(function(){$("input:checkbox,input:text,input:button").uniform()});
+//$(function(){$("input:checkbox,input:text,input:button").uniform()});
 var qstring="",url="",pr_id="",themap=null,geocoder=null,autocomplete=null,bounds="";
 var obj3g,obj4g,objoperator;
-var geoxmlobj=null,startOverQuery=true;
+var geoxmlobj=null,startOverQuery=true,check_avail_operators=true;
 var defOptions=null,prevlat=null,prevlon=null,prevBounds=null,india_bounds=null;
 var sw=new Array();
 var ne=new Array();
 var map_reset=true;
-var moreResultsAvailable=true,outsideindia=true;
+var moreResultsAvailable=true,outsideindia=true,Operator_Node_List=null;
 var rectangle=null;
-function initialize() {
-
-  var india = new google.maps.LatLng(14.477234210156507, 79.8486328125);
+function initialize() 
+{
+var india = new google.maps.LatLng(14.477234210156507, 79.8486328125);
    defOptions = {
     zoom:5,
     center: india,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
-
 themap = new google.maps.Map(document.getElementById("map_canvas"), defOptions);
 g=document.getElementById("location");
 autoc_options = {
 types: ['(regions)'],
 componentRestrictions: {country: 'in'}
 };
+
 autocomplete = new google.maps.places.Autocomplete(g,autoc_options);
 //google.maps.event.addListener(autocomplete,'place_changed',GeocodeLocation);
-$('#operator :input').bind("click",DoQuery);
+$('#operator :input').bind("click",click_DoQuery);
 india_bounds=new google.maps.LatLngBounds(new google.maps.LatLng(6.7471390,68.1623860),new google.maps.LatLng(35.50715650,97.3955550));
 prevBounds=india_bounds;
 var operatorlist=document.getElementById("map_operator_list");
@@ -37,10 +37,14 @@ url="http://localhost:3000/gen_kml/generatekml.xml?";
 InspectCheckBox();
 google.maps.event.addDomListener(obj3g,'click',DoQuery);
 google.maps.event.addDomListener(obj4g,'click',DoQuery);
-geoxmlobj=new geoXML3.parser({map:themap});
-geoxmlobj.parse(url);
-google.maps.event.addListener(themap,'idle',InspectBounds);
-
+//geoxmlobj=new geoXML3.parser({map:themap});
+//geoxmlobj.parse(url);
+function click_DoQuery()
+{
+check_avail_operators=false;
+DoQuery();
+}
+google.maps.event.addListener(themap,'bounds_changed',InspectBounds);
 }
 function Check3GAnd4G(){
 InspectCheckBox();
@@ -89,11 +93,39 @@ Check3GAnd4G();
 addProvider();
 if(sw.length!=0 && ne.length!=0)
 prePareBoundsQstring(sw[0],sw[1],ne[0],ne[1]);
+//Need to check because, if the geoxmlobj is loaded for the first time , then it will through , since it is null. So to make sure it is not null , we do check.
+if(geoxmlobj!=null)
 geoxmlobj.hideDocument();
 geoxmlobj=new geoXML3.parser({map:themap });
+//console.log("request"+url+qstring+pr_id+bounds);
 geoxmlobj.parse(url+qstring+pr_id+bounds);
+if(check_avail_operators)
+Available_Operators();
+check_avail_operators=true;
 }
+function Available_Operators()
+{
+var input_value;
+var operators_array;
+Operators_Node_List=$.trim(Operators_Node_List);
+operators_array=Operators_Node_List.split(' ');
 
+console.log(operators_array);
+//operators_array=["13","12","23"];
+
+$("#operator li").each(
+function(){
+input_value=$(this).children().val();
+console.log("Name:"+$(this).attr("name") +"input_value:"+$(this).children().val()+"availability:"+$.inArray(input_value,operators_array));
+if($.inArray(input_value,operators_array)>-1)
+{
+$(this).css('display','block');
+}
+else
+$(this).css('display','none');
+});
+//alert(i);
+}
 function InspectCheckBox()
 {
 obj4g=document.getElementById("has_4g");
@@ -122,6 +154,7 @@ var rectbounds=new google.maps.LatLngBounds(new google.maps.LatLng(l.lat()-8,l.l
 rectangleOptions={
 map:themap,
 editable:true,  
+draggable:true,
 bounds:rectbounds
 };
 rectangle.setOptions(rectangleOptions);
@@ -166,6 +199,7 @@ function InspectBounds()
 {
 sw.length=0;
 ne.length=0;
+
 var mapbounds=themap.getBounds();
 l=mapbounds.getSouthWest();
 e=mapbounds.getNorthEast();
@@ -174,6 +208,7 @@ sw.push(l.lng());
 ne.push(e.lat());
 ne.push(e.lng());
 zl=themap.getZoom();
+//console.log("Zoom level"+zl);
 if(zl>=5)
 {
 map_reset=true;
@@ -183,6 +218,7 @@ if(prevBounds!=null)
 {
 if((!prevBounds.contains(l) || !prevBounds.contains(e)) || moreResultsAvailable)//contains
 {
+
 UpdatePreviousBoundsandDoQuery();
 }
 else
@@ -196,25 +232,26 @@ else
 UpdatePreviousBoundsandDoQuery();
 }
 }
+
 }
 else if(zl<5)
 {
 if(map_reset)
 resetMap();
+
 }
-var o=document.getElementById("pb");
-var e=document.getElementById("cb");
-o.innerHTML="previous bounds"+prevBounds.toString();
-e.innerHTML="CurrentBounds"+themap.getBounds().toString()+"</br>zoom level:"+zl
-+"moremarkers"+moreResultsAvailable;
+
 }
 function UpdatePreviousBoundsandDoQuery()
 {
+
 sw[0]-=3;
 sw[1]-=3;
 ne[0]+=3;
 ne[1]+=3;
 prevBounds=new google.maps.LatLngBounds(new google.maps.LatLng(sw[0],sw[1]),new google.maps.LatLng(ne[0],ne[1]));
+//console.log("Came here because of the zoom level");
+
 DoQuery();
 }
 function resetMap()
