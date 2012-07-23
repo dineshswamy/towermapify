@@ -99,6 +99,7 @@ geoxmlobj.hideDocument();
 geoxmlobj=new geoXML3.parser({map:themap });
 //console.log("request"+url+qstring+pr_id+bounds);
 geoxmlobj.parse(url+qstring+pr_id+bounds);
+//need to check whether this request is from operators checkbox.if true , we need not check available operators also if do so it will remove the unchecked operators .
 if(check_avail_operators)
 Available_Operators();
 check_avail_operators=true;

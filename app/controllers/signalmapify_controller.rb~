@@ -1,10 +1,7 @@
-class GenKmlController < ApplicationController
-  layout 'kmltemplate'
-  
-  def generatekml
-	@moremarkers="false"
-	@av_op="\t"
-	@query= CoverageArea.select("*")
+class SignalmapifyController < ApplicationController
+layout 'signalmapify'
+def getsignaldata
+	@query= CoverageArea.select("lat,lon,has_3g,has_4g,weight,provider_name,city")
 	if(!params[:reg_id].nil?) then
 		l= begin Integer(params[:reg_id]) rescue 0 end		
 		@query=@query.where(:region_id=>l)
@@ -49,7 +46,6 @@ class GenKmlController < ApplicationController
   	end
 	@query=@query.order("weight DESC")	
 	@query=@query.limit(500)
-	
-  end
-
+	@query_json=@query.as_json()
+end
 end

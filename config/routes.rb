@@ -5,12 +5,11 @@ TowerMapify::Application.routes.draw do
   #get "gen_kml/generatekml"
 
   match "gen_kml/generatekml" =>"gen_kml#generatekml"
-
+  match "signalmapify/getsignaldata"=>"signalmapify#getsignaldata"
   get "city_based/bycity"
   get "region_based/byregions"
   get "towermapify/mapthetowers"
   get "show_entry/theentry"
-
   get "showcity/list"
 
   # The priority is based upon order of creation:

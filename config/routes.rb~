@@ -8,9 +8,9 @@ TowerMapify::Application.routes.draw do
 
   get "city_based/bycity"
   get "region_based/byregions"
-  get "towermapify/mapthetowers,"
+  get "towermapify/mapthetowers"
   get "show_entry/theentry"
-
+  get "signalmapify/getsignaldata"
   get "showcity/list"
 
   # The priority is based upon order of creation:
