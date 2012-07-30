@@ -84,6 +84,7 @@ var rowcount;
       };
       internals.docSet.push(thisDoc);
       geoXML3.fetchXML(thisDoc.url, function (responseXML) {render(responseXML, thisDoc);});
+      
     }
   };
 
@@ -141,9 +142,10 @@ var rowcount;
       // Parse styles
       var styleID, iconNodes;
       //Getting available operators for the bounds 
-      var Operators_Node=responseXML.getElementsByTagName('value');
+      var Operators_Node=responseXML.getElementById('operator_available_kml');
+      Operators_Node_List=Operators_Node.textContent;
+      console.log(Operators_Node_List);
       
-      Operators_Node_List=Operators_Node[0].childNodes[0].nodeValue;
       var styleNodes = responseXML.getElementsByTagName('Style');
       for (i = 0; i < styleNodes.length; i++) {
         styleID   = styleNodes[i].getAttribute('id');
@@ -390,6 +392,7 @@ var rowcount;
       }
 
       doc.internals.remaining -= 1;
+      ControlsontheMap.show();
       if (doc.internals.remaining === 0) {
         // We're done processing this set of KML documents
 
@@ -588,7 +591,7 @@ geoXML3.fetchXML = function (url, callback) {
     geoXML3.log('Unable to create XHR object');
     callback(null);
   } else {
-    xhrFetcher.open('GET', url, true);
+  	xhrFetcher.open('GET', url, false);
     xhrFetcher.onreadystatechange = function () {
       if (xhrFetcher.readyState === 4) {
         // Retrieval complete
@@ -599,7 +602,7 @@ geoXML3.fetchXML = function (url, callback) {
           callback();
         } else {
           // Returned successfully
-          callback(xhrFetcher.responseXML);
+        setTimeout(callback(xhrFetcher.responseXML),2000);
         }
         // We're done with this fetcher object
         geoXML3.fetchers.push(xhrFetcher);

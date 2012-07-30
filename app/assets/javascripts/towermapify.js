@@ -1,7 +1,8 @@
-//$(function(){$("input:checkbox,input:text,input:button").uniform()});
+$(function(){$("input:checkbox,input:text,input:button").uniform()});
 var qstring="",url="",pr_id="",themap=null,geocoder=null,autocomplete=null,bounds="";
 var obj3g,obj4g,objoperator;
 var geoxmlobj=null,startOverQuery=true,check_avail_operators=true;
+var ControlsontheMap= new Object();
 var defOptions=null,prevlat=null,prevlon=null,prevBounds=null,india_bounds=null;
 var sw=new Array();
 var ne=new Array();
@@ -29,22 +30,40 @@ $('#operator :input').bind("click",click_DoQuery);
 india_bounds=new google.maps.LatLngBounds(new google.maps.LatLng(6.7471390,68.1623860),new google.maps.LatLng(35.50715650,97.3955550));
 prevBounds=india_bounds;
 var operatorlist=document.getElementById("map_operator_list");
+var ajaxloading=document.getElementById("loader_logo");
+themap.controls[google.maps.ControlPosition.TOP_LEFT].push(ajaxloading);
 themap.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(operatorlist);
 var autocompletediv=document.getElementById("map_overlay_autocomplete");
 themap.controls[google.maps.ControlPosition.TOP_LEFT].push(autocompletediv);
-
 url="http://localhost:3000/gen_kml/generatekml.xml?";
 InspectCheckBox();
+//intializing functions for hiding and showing controls on the map(global variable)
+ControlsontheMap.hide=function showtheControlsontheMap()
+{
+var loader="<img src='http://localhost:3000/assets/ajax-loader.gif'/>";
+$("#map_overlay_autocomplete").hide();
+$("#loader_logo").html(loader);
+$("#loader_logo").show();
+//console.log("inside hide function");
+$("#map_operator_list").hide();
+}
+ControlsontheMap.show=function hidetheControlsontheMap()
+{
+console.log("inside show function");
+$("#loader_logo").hide();
+$("#map_overlay_autocomplete").show();
+$("#map_operator_list").show();
+}
 google.maps.event.addDomListener(obj3g,'click',DoQuery);
 google.maps.event.addDomListener(obj4g,'click',DoQuery);
 //geoxmlobj=new geoXML3.parser({map:themap});
 //geoxmlobj.parse(url);
+google.maps.event.addListener(themap,'bounds_changed',InspectBounds);
+}
 function click_DoQuery()
 {
 check_avail_operators=false;
 DoQuery();
-}
-google.maps.event.addListener(themap,'bounds_changed',InspectBounds);
 }
 function Check3GAnd4G(){
 InspectCheckBox();
@@ -88,6 +107,7 @@ pr_id="";
 }
 function DoQuery()
 {
+ControlsontheMap.hide();
 ClearValues();
 Check3GAnd4G();
 addProvider();
@@ -110,22 +130,20 @@ var input_value;
 var operators_array;
 Operators_Node_List=$.trim(Operators_Node_List);
 operators_array=Operators_Node_List.split(' ');
-
 console.log(operators_array);
-//operators_array=["13","12","23"];
-
-$("#operator li").each(
+$(".operator_check").each(
 function(){
-input_value=$(this).children().val();
-console.log("Name:"+$(this).attr("name") +"input_value:"+$(this).children().val()+"availability:"+$.inArray(input_value,operators_array));
+input_value=$(this).val();
+console.log("Input value:"+input_value);
 if($.inArray(input_value,operators_array)>-1)
 {
-$(this).css('display','block');
+$(this).attr("checked","checked");
 }
 else
-$(this).css('display','none');
+$(this).removeAttr("checked","checked");
+$.uniform.update();
 });
-//alert(i);
+
 }
 function InspectCheckBox()
 {
@@ -252,7 +270,6 @@ ne[0]+=3;
 ne[1]+=3;
 prevBounds=new google.maps.LatLngBounds(new google.maps.LatLng(sw[0],sw[1]),new google.maps.LatLng(ne[0],ne[1]));
 //console.log("Came here because of the zoom level");
-
 DoQuery();
 }
 function resetMap()

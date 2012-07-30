@@ -129,19 +129,14 @@
    end %>
    
 <% end %>
- <ExtendedData>
-      	<Data name="operators_name">
-      		<value>
-      <%
-      
+ <Description id="operator_available_kml">
+           <%
       	showoperators.each do |o|
 	%>	      	
       	<% 
-      	 @av_op=@av_op+o[0].to_s+","
+      	 @av_op=@av_op+o[0].to_s+" "
       	 %>
       	<% end %>
       	<%= @av_op %>
-      		</value>
-      	</Data>
-      </ExtendedData>
+ </Description>
 
