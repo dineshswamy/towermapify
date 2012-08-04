@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20120711133730) do
 
   create_table "cities", :force => true do |t|
     t.string  "city",                   :default => "", :null => false
@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(:version => 0) do
     t.boolean  "has_hsia"
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
+    t.float    "lat"
+    t.float    "lon"
+    t.integer  "weight",        :limit => 2
+  end
+
+  create_table "learnrails", :force => true do |t|
+    t.string   "name"
+    t.string   "interests"
+    t.integer  "age"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end

@@ -1,0 +1,2 @@
+module SignalhoundGetHelper
+end
