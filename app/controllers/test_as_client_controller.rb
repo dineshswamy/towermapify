@@ -1,0 +1,2 @@
+class TestAsClientController < ApplicationController
+end

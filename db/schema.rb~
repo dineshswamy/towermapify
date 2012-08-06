@@ -56,7 +56,6 @@ ActiveRecord::Schema.define(:version => 20120806133909) do
 
   create_table "signal_hound_data", :force => true do |t|
     t.text     "operator_name"
-    t.int	"operator_id"
     t.float    "lat"
     t.float    "lon"
     t.float    "dbm"
