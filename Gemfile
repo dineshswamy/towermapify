@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+gem 'delayed_job_active_record'
 gem 'execjs'
 gem 'therubyracer'
 gem 'mysql2'

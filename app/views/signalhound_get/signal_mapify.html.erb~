@@ -1,0 +1,21 @@
+
+<script type="text/javascript">
+var heatmapdata=[
+<%
+
+@signal_to_map_data.each do |l|
+	@count_no_of_rows=@count_no_of_rows+1
+%>
+{location:new google.maps.LatLng(<%=l.lat %> ,<%=l.lon%>),weight:<%= l.weight%>}
+<%=
+if @count_no_of_rows!=@signal_to_map_data.size() then
+","
+%>
+<%
+end
+%>
+
+];
+</script>
+<div id="map_canvas">
+</div>

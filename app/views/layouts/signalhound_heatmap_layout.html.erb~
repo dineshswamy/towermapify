@@ -6,16 +6,9 @@
 <title>Komparify Coverage</title>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDNSsZWbC9eVumGlWU4RDR-wL96vjC3hgM&sensor=false&libraries=visualization">
 </script>
-  <%= javascript_include_tag "geoxml3" %>
-  <%= javascript_include_tag "infobox" %>
-<%= stylesheet_link_tag "towermapify" %>
-<%= stylesheet_link_tag "uniform" %>
-  <%= csrf_meta_tags %>
+   <%= stylesheet_link_tag "towermapify" %>
     <%= javascript_include_tag "jquery.min-1.7.2" %>  
-
-  <%= javascript_include_tag "towermapify" %>
-    <%= javascript_include_tag "jquery.uniform" %>
-
+    <%= javascript_include_tag "signalhound_get" %>
 
 </head>
 <body onload="initialize();">

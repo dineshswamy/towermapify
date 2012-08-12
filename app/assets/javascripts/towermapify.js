@@ -15,7 +15,8 @@ var india = new google.maps.LatLng(14.477234210156507, 79.8486328125);
    defOptions = {
     zoom:5,
     center: india,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    mapTypeControlOptions:{position:google.maps.ControlPosition.BOTTOM_LEFT}
   };
 themap = new google.maps.Map(document.getElementById("map_canvas"), defOptions);
 g=document.getElementById("location");
@@ -113,7 +114,7 @@ Check3GAnd4G();
 addProvider();
 if(sw.length!=0 && ne.length!=0)
 prePareBoundsQstring(sw[0],sw[1],ne[0],ne[1]);
-//Need to check because, if the geoxmlobj is loaded for the first time , then it will through , since it is null. So to make sure it is not null , we do check.
+//Need to check because, if the geoxmlobj is loaded for the first time , then it will through error , since it is null. So to make sure it is not null , we do check.
 if(geoxmlobj!=null)
 geoxmlobj.hideDocument();
 geoxmlobj=new geoXML3.parser({map:themap });
@@ -123,6 +124,12 @@ geoxmlobj.parse(url+qstring+pr_id+bounds);
 if(check_avail_operators)
 Available_Operators();
 check_avail_operators=true;
+}
+function Reset_map_to_Original()
+{
+themap.fitBounds(india_bounds);
+themap.setZoom(5);
+DoQuery();
 }
 function Available_Operators()
 {
@@ -143,7 +150,6 @@ else
 $(this).removeAttr("checked","checked");
 $.uniform.update();
 });
-
 }
 function InspectCheckBox()
 {
@@ -218,7 +224,6 @@ function InspectBounds()
 {
 sw.length=0;
 ne.length=0;
-
 var mapbounds=themap.getBounds();
 l=mapbounds.getSouthWest();
 e=mapbounds.getNorthEast();

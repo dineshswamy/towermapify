@@ -1,4 +1,5 @@
 class SignalhoundGetController < ApplicationController
+	layout 'signalhound_heatmap_layout'
 	def signal_getify
 		
 		if(!params[:signal_data].nil?) then
@@ -12,8 +13,16 @@ class SignalhoundGetController < ApplicationController
 			@signal_data.lon=l["lon"]
 			@signal_data.dbm=l["dbm"]
 			@signal_data.network_type=l["network_type"]
+			@signal_data.weight=l["weight"]
 			@signal_data.save
 			end
 		end
+		redirect_to :action=>"signal_mapify"
+	end
+	def signal_mapify
+		
+		@signal_to_map_data=SignalHoundData.select("*")
+		@count_no_of_rows=0
+		
 	end
 end

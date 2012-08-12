@@ -602,7 +602,7 @@ geoXML3.fetchXML = function (url, callback) {
           callback();
         } else {
           // Returned successfully
-        setTimeout(callback(xhrFetcher.responseXML),2000);
+        callback(xhrFetcher.responseXML);
         }
         // We're done with this fetcher object
         geoXML3.fetchers.push(xhrFetcher);

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120806133909) do
+ActiveRecord::Schema.define(:version => 20120811144815) do
 
   create_table "cities", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -46,6 +46,22 @@ ActiveRecord::Schema.define(:version => 20120806133909) do
     t.integer  "weight",        :limit => 2
   end
 
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
   create_table "learnrails", :force => true do |t|
     t.string   "name"
     t.string   "interests"
@@ -56,11 +72,23 @@ ActiveRecord::Schema.define(:version => 20120806133909) do
 
   create_table "signal_hound_data", :force => true do |t|
     t.text     "operator_name"
-    t.int	"operator_id"
     t.float    "lat"
     t.float    "lon"
     t.float    "dbm"
     t.string   "network_type"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "operator_id"
+    t.float    "weight"
+  end
+
+  create_table "signal_hound_filtered_data", :force => true do |t|
+    t.string   "operator_name"
+    t.integer  "operator_id"
+    t.float    "lan"
+    t.float    "lon"
+    t.float    "dbm"
+    t.float    "weight"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end

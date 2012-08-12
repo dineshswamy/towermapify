@@ -1,6 +1,6 @@
 #map_canvas
 {
-width:600px;
+width:900px;
 height:600px;
 }
 #map_overlay
@@ -12,7 +12,6 @@ color:white;
 }
 ul#map_operator_list
 ul{
-color:#f6f6f6;
 list-style:none;
 -webkit-border-radius: 6px;
 -moz-border-radius: 6px;

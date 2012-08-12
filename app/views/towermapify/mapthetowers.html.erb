@@ -1,7 +1,10 @@
 <div id="map_canvas">
 </div>
-<div id="loader_logo">
+<div >
 </div>
+<progress id="loader_logo" width="40" max="100" value="0">
+<strong></strong>
+</progress>
 <form action="#" id="form_id">
 <ul id="map_operator_list">
 <ul>
@@ -66,8 +69,10 @@
 
 <div id="map_overlay_autocomplete">
 <label>
+
 <input type="text"  id="location" placeholder="Search coverage in.." size="35"/>
 <input type="button" onclick="GeocodeLocation();" value="search"/>
+<input type="button" value="Resetmap" onclick="Reset_map_to_Original();"/>
 </label>
 </div>
 </form>

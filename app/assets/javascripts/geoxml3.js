@@ -591,7 +591,7 @@ geoXML3.fetchXML = function (url, callback) {
     geoXML3.log('Unable to create XHR object');
     callback(null);
   } else {
-  	xhrFetcher.open('GET', url, false);
+  	xhrFetcher.open('GET', url, true);
     xhrFetcher.onreadystatechange = function () {
       if (xhrFetcher.readyState === 4) {
         // Retrieval complete
@@ -602,7 +602,7 @@ geoXML3.fetchXML = function (url, callback) {
           callback();
         } else {
           // Returned successfully
-        setTimeout(callback(xhrFetcher.responseXML),2000);
+        callback(xhrFetcher.responseXML);
         }
         // We're done with this fetcher object
         geoXML3.fetchers.push(xhrFetcher);

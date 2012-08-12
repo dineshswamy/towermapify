@@ -370,7 +370,6 @@ div.button span {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 12px;
   letter-spacing: 1px;
-  text-transform: uppercase;
   padding-left: 2px;
   padding-right: 15px;
 }
