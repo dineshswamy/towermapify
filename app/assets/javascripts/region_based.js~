@@ -17,7 +17,7 @@ var mapbounds=new google.maps.LatLngBounds();
 mapbounds.extend(new google.maps.LatLng(alat[0],blon[0]));
 mapbounds.extend(new google.maps.LatLng(alat[1],blon[1]));
 }
-url="http://localhost:3000/gen_kml/generatekml.xml?reg_id="+rid;
+url="/gen_kml/generatekml.xml?reg_id="+rid;
 geoxmlobj=new geoXML3.parser({map:themap});
 geoxmlobj.parse(url);	
 themap.fitBounds(mapbounds);

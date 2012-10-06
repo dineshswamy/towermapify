@@ -414,7 +414,7 @@ InfoBox.prototype.setBoxStyle_ = function () {
 InfoBox.prototype.getBoxWidths_ = function () {
 
   var computedStyle;
-  var bw = {top:0, bottom: 0, left: 0, right: 0};
+  var bw = {top: 10, bottom: 0, left: 0, right: 30};
   var box = this.div_;
 
   if (document.defaultView && document.defaultView.getComputedStyle) {

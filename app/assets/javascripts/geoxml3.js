@@ -474,15 +474,15 @@ var rowcount;
 
 var infoboxoptions={
       content: '<div class="geoxml3_infowindow">'+placemark.name+'<div>'+ placemark.description + '</div></div>',
-      pixelOffset: new google.maps.Size(-65,-25),
+      pixelOffset: new google.maps.Size(-95,-20),
       maxWidth:0,
       disableAutoPan:true,
-      closeBoxMargin:"5px 5px 2px 2px",
-      closeBoxURL:"http://www.google.com/intl/en_us/mapfiles/close.gif",
+      closeBoxMargin:"0px 0px 0px 0px",
+      closeBoxURL:"/assets/close.png",
       isHidden:false,
       pane:"floatPane",
       boxClass:"infowindow_style",
-      enableEventPropagation:false,
+      enableEventPropagation:true,
       alignBottom:true
     };
     marker.infoWindow = new InfoBox(infoboxoptions);

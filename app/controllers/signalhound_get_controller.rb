@@ -15,14 +15,26 @@ class SignalhoundGetController < ApplicationController
 			@signal_data.network_type=l["network_type"]
 			@signal_data.weight=l["weight"]
 			@signal_data.save
+			
 			end
 		end
-		redirect_to :action=>"signal_mapify"
+		#asynchronous processing of signal data recieved.
+		#redirect_to :action=>"signal_mapify"
 	end
 	def signal_mapify
-		
 		@signal_to_map_data=SignalHoundData.select("*")
 		@count_no_of_rows=0
-		
+	end
+	def signal_mapify_dbm_normalize
+			@signaldata_count=SignalHoundData.count
+			@error_value=[]
+			while @signaldata_count > 0
+				@current_record=SignalHoundData.first
+				@current_record_lat=@current_record[:lat]
+				@current_record_lon=@current_record[:lon]
+				@records_from_signal_data=SignalHoundData.where(:lat)
+				
+				
+			end
 	end
 end

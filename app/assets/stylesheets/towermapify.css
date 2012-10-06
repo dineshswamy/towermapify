@@ -1,7 +1,17 @@
+#map_container
+{
+	position:relative;
+	left:200px;
+	top:100px;
+}
 #map_canvas
 {
-width:900px;
+width:600px;
 height:600px;
+border:4px solid rgba(59,59,59,0.8);
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+border-radius: 6px;
 }
 #map_overlay
 {
@@ -16,34 +26,68 @@ list-style:none;
 -webkit-border-radius: 6px;
 -moz-border-radius: 6px;
 border-radius: 6px;
+color:white;
+padding:5px;
+}
+#operator_div
+{
+width:175px;
+height:370px;
+list-style:none;
+-webkit-border-radius: 6px;
+-moz-border-radius: 6px;
+border-radius: 6px;
+color:white;
+padding:5px;
 background-color:rgba(59,59,59,0.8);
 }
 
-#form_id
+#map_operator_list #control_show_or_hide
+{
+z-index:9999;
+}
+
+#map_overlay_autocomplete #search_coverage
 {
 
 }
 #map_overlay_autocomplete
 {
-background:#f6f6f6;
-}
-#map_overlay_list>li{
-float:left;
-}
-#operator
-{
-padding:5px;
-}
-.infowindow_style
-{
-width:130px;
-height:50px;
-background-color:#fff;
 -webkit-border-radius: 6px;
 -moz-border-radius: 6px;
 border-radius: 6px;
-border:1px solid #dc883c;
--webkit-box-shadow: 0px 0px 7px 3px #dadce1;
-box-shadow: 0px 0px 7px 3px #dadce1;
+display:inline;
+}
+#map_overlay_autocomplete
+ul 
+{
+list-style:none;
+display:inline;
+padding-top:10px;
+}
+#map_overlay_autocomplete ul li
+{
+	display:inline;
+}
+#map_overlay_autocomplete ul li input[type="checkbox"]
+{
+
+}
+
+#map_overlay_list>li{
+float:left;
+}
+#control_show_or_hide
+{
+float:right;
+}
+
+.infowindow_style
+{
+width:191px;
+height:105px;
+background-image:url('/assets/black_arrow.png');
+background-position:left;
+
 }
 

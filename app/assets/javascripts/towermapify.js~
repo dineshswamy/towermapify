@@ -2,7 +2,7 @@ $(function(){$("input:checkbox,input:text,input:button").uniform()});
 var qstring="",url="",pr_id="",themap=null,geocoder=null,autocomplete=null,bounds="";
 var obj3g,obj4g,objoperator;
 var geoxmlobj=null,startOverQuery=true,check_avail_operators=true;
-var ControlsontheMap= new Object();
+var ControlsontheMap=new Object();
 var defOptions=null,prevlat=null,prevlon=null,prevBounds=null,india_bounds=null;
 var sw=new Array();
 var ne=new Array();
@@ -26,40 +26,43 @@ componentRestrictions: {country: 'in'}
 };
 
 autocomplete = new google.maps.places.Autocomplete(g,autoc_options);
-//google.maps.event.addListener(autocomplete,'place_changed',GeocodeLocation);
+google.maps.event.addListener(autocomplete,'place_changed',GeocodeLocation);
 $('#operator :input').bind("click",click_DoQuery);
 india_bounds=new google.maps.LatLngBounds(new google.maps.LatLng(6.7471390,68.1623860),new google.maps.LatLng(35.50715650,97.3955550));
 prevBounds=india_bounds;
 var operatorlist=document.getElementById("map_operator_list");
-var ajaxloading=document.getElementById("loader_logo");
-themap.controls[google.maps.ControlPosition.TOP_LEFT].push(ajaxloading);
 themap.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(operatorlist);
-var autocompletediv=document.getElementById("map_overlay_autocomplete");
-themap.controls[google.maps.ControlPosition.TOP_LEFT].push(autocompletediv);
 url="http://localhost:3000/gen_kml/generatekml.xml?";
 InspectCheckBox();
 //intializing functions for hiding and showing controls on the map(global variable)
 ControlsontheMap.hide=function showtheControlsontheMap()
 {
-var loader="<img src='http://localhost:3000/assets/ajax-loader.gif'/>";
-$("#map_overlay_autocomplete").hide();
-$("#loader_logo").html(loader);
-$("#loader_logo").show();
-//console.log("inside hide function");
-$("#map_operator_list").hide();
+$("#operator").hide();
+$("#loader_ajax").show();
 }
 ControlsontheMap.show=function hidetheControlsontheMap()
 {
-console.log("inside show function");
-$("#loader_logo").hide();
-$("#map_overlay_autocomplete").show();
-$("#map_operator_list").show();
+$("#loader_ajax").hide();
+$("#operator").fadeIn();
 }
 google.maps.event.addDomListener(obj3g,'click',DoQuery);
 google.maps.event.addDomListener(obj4g,'click',DoQuery);
 //geoxmlobj=new geoXML3.parser({map:themap});
 //geoxmlobj.parse(url);
 google.maps.event.addListener(themap,'bounds_changed',InspectBounds);
+//$("#loader_logo").hide();
+//show or hide controls
+
+$("#control_show_or_hide").toggle(function(){
+$("#control_show_or_hide").html('<img src="/assets/control_open.png" />');
+$("#operator_div").css("visibility","hidden");
+},
+function()
+{
+$("#control_show_or_hide").html('<img src="/assets/control_close.png" />');
+$("#operator_div").css("visibility","visible");
+});
+
 }
 function click_DoQuery()
 {
@@ -120,7 +123,7 @@ geoxmlobj.hideDocument();
 geoxmlobj=new geoXML3.parser({map:themap });
 //console.log("request"+url+qstring+pr_id+bounds);
 geoxmlobj.parse(url+qstring+pr_id+bounds);
-//need to check whether this request is from operators checkbox.if true , we need not check available operators also if do so it will remove the unchecked operators .
+//need to check whether this request is from operators checkbox.if true , we need not check available operators also if do so it will remove the unchecked operators.
 if(check_avail_operators)
 Available_Operators();
 check_avail_operators=true;
@@ -166,32 +169,6 @@ else
 pr_id+="&op_id[]="+$(this).val();
 });
 }
-function Drawrectangle()
-{
-rectangle= new google.maps.Rectangle();
-google.maps.event.addListener(rectangle,"bounds_changed",QueryRectangle);
-var g=themap.getBounds();
-var l=g.getSouthWest();
-var e=g.getNorthEast();
-var rectbounds=new google.maps.LatLngBounds(new google.maps.LatLng(l.lat()-8,l.lng()-8),new google.maps.LatLng(e.lat()-8,e.lng()-8));
-
-// set bounds
-rectangleOptions={
-map:themap,
-editable:true,  
-draggable:true,
-bounds:rectbounds
-};
-rectangle.setOptions(rectangleOptions);
-}
-function QueryRectangle()
-{
-var g=rectangle.getBounds();
-var l=g.getSouthWest();
-var e=g.getNorthEast();
-prePareBoundsQstring(l.lat(),l.lng(),e.lat(),e.lng())
-DoQuery();
-}
 
 function GeocodeLocation()
 {
@@ -205,7 +182,6 @@ sw.length=0;
 ne.length=0;
 if(g.id!=null)
 themap.fitBounds(g.geometry.viewport);
-
 //get bounds
 //l=g.geometry.viewport.getSouthWest();
 //e=g.geometry.viewport.getNorthEast();
@@ -215,10 +191,6 @@ themap.fitBounds(g.geometry.viewport);
 //ne.push(e.lng());
 //UpdatePreviousBoundsandDoQuery();
 }
-}
-function PushMapBounds()
-{
-
 }
 function InspectBounds()
 {
@@ -232,7 +204,6 @@ sw.push(l.lng());
 ne.push(e.lat());
 ne.push(e.lng());
 zl=themap.getZoom();
-//console.log("Zoom level"+zl);
 if(zl>=5)
 {
 map_reset=true;
@@ -242,7 +213,6 @@ if(prevBounds!=null)
 {
 if((!prevBounds.contains(l) || !prevBounds.contains(e)) || moreResultsAvailable)//contains
 {
-
 UpdatePreviousBoundsandDoQuery();
 }
 else
@@ -256,19 +226,15 @@ else
 UpdatePreviousBoundsandDoQuery();
 }
 }
-
 }
 else if(zl<5)
 {
 if(map_reset)
 resetMap();
-
 }
-
 }
 function UpdatePreviousBoundsandDoQuery()
 {
-
 sw[0]-=3;
 sw[1]-=3;
 ne[0]+=3;

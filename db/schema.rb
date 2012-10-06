@@ -11,86 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120811144815) do
+ActiveRecord::Schema.define(:version => 20120816133444) do
 
-  create_table "cities", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "cities_dump", :force => true do |t|
-    t.string  "city",                   :default => "", :null => false
-    t.integer "region_id", :limit => 2,                 :null => false
-    t.string  "state"
-    t.float   "lat"
-    t.float   "long"
-  end
-
-  add_index "cities_dump", ["region_id"], :name => "region"
-
-  create_table "coverage_areas", :force => true do |t|
-    t.string   "provider_name", :limit => 25
-    t.integer  "provider_id"
-    t.string   "city"
-    t.integer  "city_id",                     :default => 0
-    t.string   "state"
-    t.integer  "region_id"
-    t.boolean  "has_3g"
-    t.boolean  "has_datacard"
-    t.boolean  "has_4g"
-    t.boolean  "has_hsia"
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
-    t.float    "lat"
-    t.float    "lon"
-    t.integer  "weight",        :limit => 2
-  end
-
-  create_table "delayed_jobs", :force => true do |t|
-    t.integer  "priority",   :default => 0
-    t.integer  "attempts",   :default => 0
-    t.text     "handler"
-    t.text     "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
-    t.string   "locked_by"
-    t.string   "queue"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-  end
-
-  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
-
-  create_table "learnrails", :force => true do |t|
-    t.string   "name"
-    t.string   "interests"
-    t.integer  "age"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "signal_hound_data", :force => true do |t|
-    t.text     "operator_name"
-    t.float    "lat"
-    t.float    "lon"
-    t.float    "dbm"
-    t.string   "network_type"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.integer  "operator_id"
-    t.float    "weight"
-  end
-
-  create_table "signal_hound_filtered_data", :force => true do |t|
-    t.string   "operator_name"
-    t.integer  "operator_id"
-    t.float    "lan"
-    t.float    "lon"
-    t.float    "dbm"
-    t.float    "weight"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+  create_table "login", :force => true do |t|
+    t.text     "user_name",               :limit => 255
+    t.text     "name",                    :limit => 255
+    t.text     "designation",             :limit => 255
+    t.text     "access",                  :limit => 255
+    t.text     "password",                :limit => 255
+    t.text     "department",              :limit => 255
+    t.text     "last_visit_from_machine", :limit => 255
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
   end
 
 end

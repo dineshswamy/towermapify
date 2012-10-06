@@ -2,18 +2,19 @@
 <html>
 <head>
   <title>TowerMapify</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag  "region_based", :media => "all" %>
   <%= csrf_meta_tags %>
-  <%= javascript_include_tag "geoxml3" %>
-  <%= javascript_include_tag "region_based" %>
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDNSsZWbC9eVumGlWU4RDR-wL96vjC3hgM&sensor=false&libraries=places">
-</script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
 </head>
 <body onload="initialize();">
 
 <%= yield %>
-
+ 	
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDNSsZWbC9eVumGlWU4RDR-wL96vjC3hgM&sensor=false&libraries=places">
+</script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<%= javascript_include_tag "geoxml3" %>
+   <%= javascript_include_tag "region_based" %>
+   <%= javascript_include_tag "infobox" %>
 </body>
 </html>

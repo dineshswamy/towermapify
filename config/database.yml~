@@ -2,7 +2,7 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: towermapify
+  database: event_management
   pool: 5
   username: root
   password: shan123

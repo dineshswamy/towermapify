@@ -49,7 +49,7 @@ class GenKmlController < ApplicationController
   	end
 	@query=@query.order("weight DESC")	
 	@query=@query.limit(500)
-	@query_json=@query.as_json
+	
   end
 
 end

@@ -5,105 +5,10 @@ alat.push(<%= @minlat %>);
 alat.push(<%= @maxlat %>);
 blon.push(<%= @minlong %>);
 blon.push(<%= @maxlong %>);
-
 var boundsfixed=true;
 var cid=<%= @cityid %>
 </script>
 <center>
-Maxlat:<%= @maxlat %>
-Maxlong:<%= @maxlong %>
-
-Minlat:<%= @minlat %>
-Minlong:<%= @minlong %>
 <div id="map_canvas">
 </div>
-<form action="#" name="selectcity">
-<div id="map_overlay">
-<ul id="map_overlay_list">
-<li id="operator">
-<ul id="operator_list">
-
-<li id="operator_checkboxes">
-<input type="checkbox" name="operator" value="1"/>
-<img src="assets/airtel.png"/>Airtel
-</li>
-
-<li>
-<input type="checkbox" name="operator" value="5"/>
-<img src="assets/aircel.png"/>Aircel
-</li>
-
-<li>
-<input type="checkbox" name="operator" value="6"/>
-<img src="assets/bsnl.png"/>Bsnl
-</li>
-
-<li>
-<input type="checkbox" name="operator" value="13"/>
-<img src="assets/docomo.png"/>Docomo
-</li>
-
-<li>
-<input type="checkbox" name="operator" value="7"/>
-<img src="assets/idea.png"/>Idea
-</li>
-
-<li>
-<input type="checkbox" name="operator" value="" disabled="disabled"/>
-<img src="assets/loop.png"/>Loop
-</li>
-
-<li>
-<input type="checkbox" name="operator" value="" disabled="disabled"/>
-<img src="assets/mtnl.png"/>Mtnl
-</li>
-
-<li>
-<input type="checkbox" name="operator" value="10"/>
-<img src="assets/mts.png"/>MTS
-</li>
-
-<li>
-<input type="checkbox" name="operator" value="3"/>
-<img src="assets/reliance.png"/>Reliance GSM
-</li>
-
-<li>
-<input type="checkbox" name="operator" value="17"/>
-<img src="assets/reliance.png"/>Reliance CDMA
-</li>
-
-<li>
-<input type="checkbox" name="operator" value="1" disabled="disabled"/>
-<img src="assets/videocon.png"/>Videocon
-</li>
-
-<li>
-<input type="checkbox" name="operator" value="1" disabled="disabled"/>
-<img src="assets/virgin.png"/>Virgin
-</li>
-
-<li>
-<input type="checkbox" name="operator" value="4" />
-<img src="assets/vodafone.png"/>Vodafone
-</li>
-</ul>
-</li>
-
-<li id="place">
-</li>
-<li id="hasthreeorfourg">
-<label>
-<input type="checkbox" id="has_3g" value="1" checked="checked"/>3G
-</label>
-<label>
-<input type="checkbox" id="has_4g" value="1" checked="checked"/>4G
-</label>
-<label>
-<input type="text" length="50" id="location"/>
-<label>
-</li>
-</ul>
-</div>
-</form>
 </center>

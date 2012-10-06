@@ -105,16 +105,16 @@
 <description>
 
 <![CDATA[
-<%= image_tag( getOperatorLogo(l.provider_id) , :size=> "30x30") %>
-<p style="display:inline; font:10px 'Times New Roman',Serif;">
+<%= image_tag( getOperatorLogo(l.provider_id) , :size=> "100x50") %>
+<p style="display:inline; font:14px 'Times New Roman',Serif;color:white;">
 
 <%=l.city %>
 </p>
 <% if l.has_3g then %>
-<%= image_tag("3g.png" , :size=> "20x20") %>
+<%= image_tag("3g.png" , :size=> "30x30") %>
 <%end%>
 <% if l.has_4g then %>
-<%= image_tag("4g.png" , :size=> "20x20")  %>
+<%= image_tag("4g.png" , :size=> "30x30")  %>
 <%end%>
 
 ]]>

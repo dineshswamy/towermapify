@@ -1,78 +1,88 @@
+<div id="map_container">
+<div id="map_overlay_autocomplete">
+<ul>
+<li id="search_coverage">
+	<label>
+		<input type="text"  id="location" x-webkit-speech placeholder="Search coverage in.." size="35"/>
+	</label>
+</li>
+<li>
+	<label>
+		<input type="button" value="resetmap" onclick="Reset_map_to_Original();"/>
+	</label>
+</li>
+
+</ul>
+</div>
+
 <div id="map_canvas">
 </div>
-<div >
-</div>
-<progress id="loader_logo" width="40" max="100" value="0">
-<strong></strong>
-</progress>
 <form action="#" id="form_id">
+
 <ul id="map_operator_list">
+<div id="operator_div">
 <ul>
+
 <li id="hasthreeorfourg">
-<label>
-<input type="checkbox" id="has_3g" value="1" /><%= image_tag("3g.png",:size=>"40x40") %>
-</label>
-<label>
-<input type="checkbox" id="has_4g" value="1"/><%= image_tag("4g.png",:size=>"40x40") %>
-</label>
+	<input type="checkbox" id="has_3g" value="1" />
+	<label for="has_3g"><%= image_tag("3g.png",:size=>"40x40") %></label>
+	
+	<input type="checkbox" id="has_4g" value="1"/>
+	<label for="has_4g"><%= image_tag("4g.png",:size=>"40x40") %></label>	
 </li>
 </ul>
-<ul id="operator">
+<ul id="loader_ajax">
+	<li><img src="http://localhost:3000/assets/hr_ajax.gif" /></li>
+</ul>
 
-<li name="Airtel"  value="1">
+<ul id="operator">
+<li name="Airtel">
 <input type="checkbox" name="operator" value="1" checked="checked" class="operator_check"/>
-<%= image_tag("airtel.png")%>Airtel
+</label><%= image_tag("airtel.png")%>Airtel
 </li>
 
-<li name="Aircel"  value="5">
-<input type="checkbox" name="operator" value="5" checked="checked" class="operator_check" />
+<li name="Aircel">
+<input type="checkbox" name="operator" value="5" checked="checked" class="operator_check"  />
 <%= image_tag("aircel.png") %>Aircel
 </li>
 
-<li name="Bsnl"  value="6">
+<li name="Bsnl">
 <input type="checkbox" name="operator" value="6" checked="checked" class="operator_check"/>
 <%= image_tag("bsnl.png") %>Bsnl
 </li>
 
-<li name="Docomo"  value="13">
+<li name="Docomo">
 <input type="checkbox" name="operator" value="13" checked="checked" class="operator_check"/>
 <%= image_tag("docomo.png") %>Docomo
 </li>
 
-<li name="Idea"  value="7">
+<li name="Idea">
 <input type="checkbox" name="operator" value="7" checked="checked" class="operator_check"/>
 <%= image_tag("idea.png") %>Idea
 </li>
 
-<li name="MTS"  value="10">
+<li name="MTS">
 <input type="checkbox" name="operator" value="10" checked="checked" class="operator_check"/>
 <%= image_tag("mts.png") %>MTS
 </li>
 
-<li name="Reliance GSM"  value="3">
+<li name="Reliance GSM">
 <input type="checkbox" name="operator" value="3" checked="checked" class="operator_check"/>
 <%= image_tag("reliance.png") %> Reliance GSM
 </li>
 
-<li name="Reliance CDMA"  value="17">
+<li name="Reliance CDMA">
 <input type="checkbox" name="operator" value="17" checked="checked" class="operator_check"/>
 <%= image_tag("reliance.png") %>Reliance CDMA
 </li>
 
-<li name="Vodafone"  value="4">
+<li name="Vodafone">
 <input type="checkbox" name="operator" value="4" checked="checked" class="operator_check"/>
 <%= image_tag("vodafone.png") %>Vodafone
 </li>
 
 </ul>
-</ul>
-
-<div id="map_overlay_autocomplete">
-<label>
-
-<input type="text"  id="location" placeholder="Search coverage in.." size="35"/>
-<input type="button" onclick="GeocodeLocation();" value="search"/>
-<input type="button" value="Resetmap" onclick="Reset_map_to_Original();"/>
-</label>
 </div>
+</ul>
 </form>
+</div>
