@@ -1,14 +1,13 @@
 <script type="text/javascript">
-var alat=new Array();
-var blon=new Array();
-alat.push(<%= @minlat %>);
-alat.push(<%= @maxlat %>);
-blon.push(<%= @minlong %>);
-blon.push(<%= @maxlong %>);
-var boundsfixed=true;
-var cid=<%= @cityid %>
+	var alat=new Array();
+	var blon=new Array();
+	alat.push(<%= @minlat %>);	
+	alat.push(<%= @maxlat %>);
+	blon.push(<%= @minlong %>);
+	blon.push(<%= @maxlong %>);
+	var boundsfixed=true;
+	var cid=<%= @cityid %>
 </script>
-<center>
 <div id="map_canvas">
 </div>
-</center>
+

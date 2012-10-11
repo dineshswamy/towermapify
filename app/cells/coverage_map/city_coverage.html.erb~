@@ -1,0 +1,21 @@
+<%= stylesheet_link_tag    "city_based", :media => "all" %>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDNSsZWbC9eVumGlWU4RDR-wL96vjC3hgM&sensor=false">
+</script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript">
+	var alat=new Array();
+	var blon=new Array();
+	alat.push(<%= @minlat %>);	
+	alat.push(<%= @maxlat %>);
+	blon.push(<%= @minlong %>);
+	blon.push(<%= @maxlong %>);
+	var boundsfixed=true;
+	var cid=<%= @cityid %>
+</script>
+  <%= javascript_include_tag "geoxml3" %>
+  <%= javascript_include_tag "infobox" %>
+  <%= javascript_include_tag "city_based" %>
+<div id="map_canvas" onload="initialize();">
+
+</div>
+

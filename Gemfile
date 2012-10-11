@@ -3,6 +3,7 @@ gem 'delayed_job_active_record'
 gem 'execjs'
 gem 'therubyracer'
 gem 'mysql2'
+gem 'cells'
 gem 'rails', '3.2.6'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

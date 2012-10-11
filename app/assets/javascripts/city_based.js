@@ -1,8 +1,6 @@
 var qstring="",url="",pr_id="",themap=null,geocoder=null,autocomplete=null,bounds="";
-var obj3g,obj4g,objoperator;
 var geoxmlobj=null;
 function initialize() {
-
   var india = new google.maps.LatLng(14.477234210156507, 79.8486328125);
   var myOptions = {
     zoom:6,

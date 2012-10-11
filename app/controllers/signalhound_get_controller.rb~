@@ -26,15 +26,13 @@ class SignalhoundGetController < ApplicationController
 		@count_no_of_rows=0
 	end
 	def signal_mapify_dbm_normalize
-			@signaldata_count=SignalHoundData.count
-			@error_value=[]
-			while @signaldata_count > 0
-				@current_record=SignalHoundData.first
-				@current_record_lat=@current_record[:lat]
-				@current_record_lon=@current_record[:lon]
-				@records_from_signal_data=SignalHoundData.where(:lat)
-				
-				
-			end
+			#@signaldata_count=SignalHoundData.count
+			#@error_value=[]
+			#while @signaldata_count > 0
+				#@current_record=SignalHoundData.first
+				#@current_record_lat=@current_record[:lat]
+				#@current_record_lon=@current_record[:lon]
+				#@records_from_signal_data=SignalHoundData.where(:lat)	
+			#end
 	end
 end

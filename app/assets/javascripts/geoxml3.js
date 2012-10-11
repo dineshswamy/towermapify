@@ -144,7 +144,6 @@ var rowcount;
       //Getting available operators for the bounds 
       var Operators_Node=responseXML.getElementById('operator_available_kml');
       Operators_Node_List=Operators_Node.textContent;
-      console.log(Operators_Node_List);
       
       var styleNodes = responseXML.getElementsByTagName('Style');
       for (i = 0; i < styleNodes.length; i++) {
@@ -392,6 +391,7 @@ var rowcount;
       }
 
       doc.internals.remaining -= 1;
+      Available_Operators();
       ControlsontheMap.show();
       if (doc.internals.remaining === 0) {
         // We're done processing this set of KML documents

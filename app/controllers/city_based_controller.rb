@@ -3,7 +3,7 @@ class CityBasedController < ApplicationController
 	def bycity
 		@bounds=CoverageArea.select("lat,lon")
 		if(!params[:city_id].nil?) then
-			l= begin Integer(params[:city_id]) rescue 0 end		
+			l=begin Integer(params[:city_id]) rescue 0 end		
 			@bounds=@bounds.where(:city_id=>l)
 			@cityid=l
 		end	

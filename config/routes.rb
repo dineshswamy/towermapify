@@ -5,7 +5,7 @@ TowerMapify::Application.routes.draw do
   #get "gen_kml/generatekml"
 
   match "gen_kml/generatekml" =>"gen_kml#generatekml"
-  match "signalmapify/getsignaldata"=>"signalmapify#getsignaldata"
+  match "signalmapify/getsignaldata" =>"signalmapify#getsignaldata"
   match "signalhound_get/signal_getify"=>"signalhound_get#signal_getify"
   match "signalhound_get/signal_mapify"=>"signalhound_get#signal_mapify"
   match "test_as_client/send_json"=>"test_as_client#send_json"

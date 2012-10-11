@@ -20,6 +20,6 @@ class CityBasedController < ApplicationController
 		@minlat-=delta		
 		@maxlong+=delta
 		@minlong-=delta
-		puts "Minlong:#{@minlong} Maxlong#{@maxlong}"
+		
     	end
 end
