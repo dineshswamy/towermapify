@@ -8,5 +8,6 @@
 	var boundsfixed=true;
 	var cid=<%= @cityid %>
 </script>
-<div id="map_canvas">
+<div id="map_canvas" ">
 </div>
+

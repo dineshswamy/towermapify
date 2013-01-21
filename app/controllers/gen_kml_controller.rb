@@ -4,7 +4,7 @@ class GenKmlController < ApplicationController
   def generatekml
 	@moremarkers="false"
 	@av_op="\t"
-	@query= CoverageArea.select("*")
+	@query= CoverageArea.select("id,provider_id as prov_id,city,city_id as c_id,lat,lon,has_3g,has_4g,has_datacard,has_hsia")
 	if(!params[:reg_id].nil?) then
 		l= begin Integer(params[:reg_id]) rescue 0 end		
 		@query=@query.where(:region_id=>l)
@@ -26,8 +26,8 @@ class GenKmlController < ApplicationController
 	if(!params[:op_id].nil?&&params[:op_id].kind_of?(Array)) then
 		ops = Array.new
 		params[:op_id].each{|op|
-		opid = begin Integer(op) rescue 0 end
-		ops.push opid if(opid!=0)
+		opid = begin Integer(op) rescue -1 end
+		ops.push opid if(opid!=-1)
 		}	
 		@query=@query.where(:provider_id=>ops) if(ops.size>0)
 	end
@@ -49,7 +49,12 @@ class GenKmlController < ApplicationController
   	end
 	@query=@query.order("weight DESC")	
 	@query=@query.limit(500)
-		
+	@last_record=@query.last
+	@avail_op=Set.new
+	@query.each do |l| 
+		@avail_op.add(l.prov_id)
+	end
+	@last_record=@query.last
   end
 
 end

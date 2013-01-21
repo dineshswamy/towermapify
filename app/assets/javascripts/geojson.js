@@ -1,5 +1,5 @@
 var markerArray=new Array();
-function send_url(url_json)
+function send_url(url_json,map)
 {
 	$.ajax({
 	url:url_json,
@@ -9,17 +9,18 @@ function send_url(url_json)
 			set_loader();
 	},
 	success:function(data){
-			render_json(data);
+			render_json(data,map);
 	}
 	});
 }
 
 function render_json(data)
 {
-		var map_data=$.parseJSON(data);
-		for(i=0;i<map_data.length;i++)
+		var json_data=$.parseJSON(data);
+		var map_coverage_data=json_data.coverage_data;
+		for(i=0;i<map_coverage_data.length;i++)
 		{
-		createMarker(map_data[i].pid,map_data[i].city,map_data[i].lat,map_data[i].lon,map_data[i].has_3g,map_data[i].has_4g,map_data[i].has_hsia);
+		createMarker(map_data[i].prov_id,map_data[i].city,map_data[i].lat,map_data[i].lon,map_data[i].has_3g,map_data[i].has_4g,map_data[i].has_hsia);
 		}
 }
 
@@ -53,7 +54,7 @@ else if(has_3g)
 {
 infocontent+="<img src=\"/assets/3g.png\">";
 }
-
+infocontent+=pid;
 var infoboxoptions={
       content:'<div>'+city+'<div>'+infocontent+'</div></div>',
       pixelOffset: new google.maps.Size(-95,-20),

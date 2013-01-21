@@ -1,11 +1,16 @@
 class CoverageMapCell < Cell::Rails
 
-  def city_coverage(city_id)
+  def city_coverage(select,id)
   		@bounds=CoverageArea.select("lat,lon")
-		if(!city_id.nil?) then
-			l=begin Integer(city_id) rescue 0 end		
-			@bounds=@bounds.where(:city_id => city_id)
-			@cityid=l
+		if(!id.nil?) then
+			l=begin Integer(id) rescue 0 end		
+			if(select==:city) then
+				@bounds=@bounds.where(:city_id => l)
+				@u_q="city_id="+l.to_s()	 
+			elsif(select==:region)
+				@bounds=@bounds.where(:region_id => l)
+				@u_q="reg_id="+l.to_s()	
+			end
 		end	
 		@maxlat,@maxlong=0.0,0.0
 		@minlat,@minlong=999.9,999.9
@@ -20,11 +25,8 @@ class CoverageMapCell < Cell::Rails
 			@minlat-=delta		
 			@maxlong+=delta
 			@minlong-=delta
+			@chosen=select
     render
+    
   end
-  
-  def region_coverage
-  
-  end
-
 end

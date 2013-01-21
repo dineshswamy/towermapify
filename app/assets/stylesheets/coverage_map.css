@@ -1,0 +1,136 @@
+@import url(http://fonts.googleapis.com/css?family=Lato);
+/***********************City and Region based map**********************/
+#region_city_based_coverage_map
+{
+	width:400px;
+	height:220px;
+}
+#coverage_map_has_3g
+{
+	background-image:url('/assets/has4g_has3g_hashsia_sprite.png');
+	background-position:-80px -6px;
+	display:inline-block;
+	background-repeat:no-repeat;
+}
+
+#coverage_map_has_4g
+{
+	background-image:url('/assets/has4g_has3g_hashsia_sprite.png');
+	background-position:-156px -6px;
+	display:inline-block;
+	background-repeat:no-repeat;
+}
+#coverage_map_has_hsia
+{
+	background-image:url('/assets/has4g_has3g_hashsia_sprite.png');
+	background-position:-4px -7px;
+	display:inline-block;
+	background-repeat:no-repeat;	
+}
+.list_info
+{
+	display:inline;
+	position:relative;
+	height:40px;
+	width:190px;
+}
+
+/********************************* Coverage map*****************************/
+#map_container
+{
+	position:relative;
+	left:200px;
+	top:100px;
+}
+#map_canvas
+{
+	width:600px;
+	height:600px;
+	border:4px solid rgba(59,59,59,0.8);
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+}
+#map_overlay
+{
+	width:600px;
+	height:200px;
+	background-color:black;
+	color:white;
+}
+ul#map_operator_list
+ul{
+	list-style:none;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	color:white;
+	padding:5px;
+}
+#operator_div
+{
+	width:175px;
+	height:370px;
+	list-style:none;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	color:white;
+	padding:5px;
+	background-color:rgba(59,59,59,0.8);
+}
+
+#map_operator_list #control_show_or_hide
+{
+	z-index:9999;
+}
+
+#map_overlay_autocomplete #search_coverage
+{
+
+}
+#map_overlay_autocomplete
+{
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	display:inline;
+}
+#map_overlay_autocomplete
+ul 
+{
+	list-style:none;
+	display:inline;
+	padding-top:10px;
+}
+#map_overlay_autocomplete ul li
+{
+	display:inline;
+}
+
+#map_overlay_list>li{
+	float:left;
+}
+#control_show_or_hide
+{
+	float:right;
+}
+/******************Info window Style ***********************/
+.infowindow_style
+{
+	width:191px;
+	height:105px;
+	background-image:url('/assets/black_arrow.png');
+	background-position:left;	
+}
+.text_style
+{
+	font-family: 'Lato', sans-serif;
+	text-shadow: black 1px 1px 3px;
+	letter-spacing: -0.25px;
+	color: white;
+	text-transform:capitalize;
+	text-decoration: none;
+	margin: 0px auto;
+}
+

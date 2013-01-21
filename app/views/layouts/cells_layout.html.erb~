@@ -1,0 +1,1 @@
+<%= render_cell :coverage_map, :city_coverage, 6 %>

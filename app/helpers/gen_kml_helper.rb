@@ -12,7 +12,7 @@ def getstyle(id)
 	stylehash[7]="idea"
 	stylehash[10]="mts"
 	stylehash[13]="docomo"
-	stylehash[12]="docomo cdma"
+	stylehash[12]="docomo"
 return stylehash[id]
 end
 

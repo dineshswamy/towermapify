@@ -105,7 +105,7 @@
 <description>
 
 <![CDATA[
-<%= image_tag( getOperatorLogo(l.provider_id) , :size=> "100x50") %>
+<%= image_tag( getOperatorLogo(l.prov_id) , :size=> "100x50") %>
 <p style="display:inline; font:14px 'Times New Roman',Serif;color:white;">
 
 <%=l.city %>
@@ -119,13 +119,13 @@
 
 ]]>
 </description>
-  <styleUrl>#<%= getstyle(l.provider_id) %>icon</styleUrl>
+  <styleUrl>#<%= getstyle(l.prov_id) %>icon</styleUrl>
       <Point>
         <coordinates><%= l.lon %>,<%= l.lat %></coordinates>
       </Point>
     </Placemark>
-<% if(showoperators[l.provider_id]==nil)
-   	showoperators[l.provider_id]=getstyle(l.provider_id)
+<% if(showoperators[l.prov_id]==nil)
+   	showoperators[l.prov_id]=getstyle(l.prov_id)
    end %>
    
 <% end %>

@@ -20,6 +20,5 @@ class RegionBasedController < ApplicationController
 		@minlat+=delta		
 		@maxlong+=delta
 		@minlong+=delta
-		puts "#{@maxlat},#{@maxlong},#{@minlat},#{@minlong}"
 	end	
 end

@@ -3,7 +3,7 @@
 <ul>
 <li id="search_coverage">
 	<label>
-		<input type="text"  id="location" x-webkit-speech placeholder="Search coverage in.." size="35"/>
+		<input  type="text"  id="location" x-webkit-speech placeholder="Search coverage in.." size="35"/>
 	</label>
 </li>
 <li>
@@ -17,12 +17,11 @@
 
 <div id="map_canvas">
 </div>
-<form action="#" id="form_id">
 
-<ul id="map_operator_list">
+<form action="#" id="form_id">
+<ul id="map_operator_list" class="text_style">
 <div id="operator_div">
 <ul>
-
 <li id="hasthreeorfourg">
 	<input type="checkbox" id="has_3g" value="1" />
 	<label for="has_3g"><%= image_tag("3g.png",:size=>"40x40") %></label>
@@ -31,58 +30,62 @@
 	<label for="has_4g"><%= image_tag("4g.png",:size=>"40x40") %></label>	
 </li>
 </ul>
+
 <ul id="loader_ajax">
-	<li><img src="http://localhost:3000/assets/hr_ajax.gif" /></li>
+	<li><%= image_tag("hr_ajax.gif") %></li>
 </ul>
 
 <ul id="operator">
-<li name="Airtel">
+<li>
 <input type="checkbox" name="operator" value="1" checked="checked" class="operator_check"/>
 </label><%= image_tag("airtel.png")%>Airtel
 </li>
 
-<li name="Aircel">
+<li>
 <input type="checkbox" name="operator" value="5" checked="checked" class="operator_check"  />
 <%= image_tag("aircel.png") %>Aircel
 </li>
 
-<li name="Bsnl">
+<li>
 <input type="checkbox" name="operator" value="6" checked="checked" class="operator_check"/>
 <%= image_tag("bsnl.png") %>Bsnl
 </li>
 
-<li name="Docomo">
+<li>
 <input type="checkbox" name="operator" value="13" checked="checked" class="operator_check"/>
 <%= image_tag("docomo.png") %>Docomo
 </li>
 
-<li name="Idea">
+<li>
 <input type="checkbox" name="operator" value="7" checked="checked" class="operator_check"/>
 <%= image_tag("idea.png") %>Idea
 </li>
 
-<li name="MTS">
+<li>
 <input type="checkbox" name="operator" value="10" checked="checked" class="operator_check"/>
 <%= image_tag("mts.png") %>MTS
 </li>
 
-<li name="Reliance GSM">
+<li>
 <input type="checkbox" name="operator" value="3" checked="checked" class="operator_check"/>
 <%= image_tag("reliance.png") %> Reliance GSM
 </li>
 
-<li name="Reliance CDMA">
+<li>
 <input type="checkbox" name="operator" value="17" checked="checked" class="operator_check"/>
 <%= image_tag("reliance.png") %>Reliance CDMA
 </li>
 
-<li name="Vodafone">
+<li>
 <input type="checkbox" name="operator" value="4" checked="checked" class="operator_check"/>
 <%= image_tag("vodafone.png") %>Vodafone
 </li>
 
 </ul>
+<!-- Operator ul -->
 </div>
+
 </ul>
+
 </form>
 </div>

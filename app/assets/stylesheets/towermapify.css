@@ -1,3 +1,14 @@
+@import url(http://fonts.googleapis.com/css?family=Lato);
+body
+{
+	font-family: 'Lato', sans-serif;
+	text-shadow: black 1px 1px 3px;
+	letter-spacing: -0.25px;
+	color: white;
+	text-decoration: none;
+	margin: 0px auto;
+}
+
 #map_container
 {
 	position:relative;
@@ -68,10 +79,6 @@ padding-top:10px;
 #map_overlay_autocomplete ul li
 {
 	display:inline;
-}
-#map_overlay_autocomplete ul li input[type="checkbox"]
-{
-
 }
 
 #map_overlay_list>li{
