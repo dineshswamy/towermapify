@@ -1,4 +1,4 @@
-Tower mapify is a coverage that is developed for KOMPARIFY.COM .
+Tower mapify is a coverage map that is developed for KOMPARIFY.COM .
 This map shows the coverage details such as whether a place has 3G,4G and HSIA for all operators.
 The markers flow inside the map , is optimized . The more we zoom inside the map , the more markers , we get .
 Myself and JigarDoshi(Founder KOMPARIFY.COM) sat down and wrote this algorithm and he called it as OVERQUERY .
